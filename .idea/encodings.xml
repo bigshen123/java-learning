@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bigshen/chatDemoService/ArtConcurrentBook/chapter03/VolatileExample.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bigshen/chatDemoService/ArtConcurrentBook/chapter04/Join.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bigshen/chatDemoService/ArtConcurrentBook/chapter04/MultiThread.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bigshen/chatDemoService/ArtConcurrentBook/chapter04/Piped.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bigshen/chatDemoService/ArtConcurrentBook/chapter04/Shutdown.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bigshen/chatDemoService/ArtConcurrentBook/chapter04/SimpleHttpServer.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bigshen/chatDemoService/ArtConcurrentBook/chapter05/BoundedQueue.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bigshen/chatDemoService/ArtConcurrentBook/chapter06/ConcurrentPutHashMap.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bigshen/chatDemoService/ArtConcurrentBook/chapter06/CountTask.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bigshen/chatDemoService/ArtConcurrentBook/chapter07/AtomicIntegerArrayTest.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bigshen/chatDemoService/concurrent/cyclicbarrier/CyclicBarrierDemo.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bigshen/chatDemoService/sort/CountingSort.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bigshen/chatDemoService/sort/SelectionSort.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bigshen/chatDemoService/sort/insert/InsertSort.java" charset="UTF-8" />
+    <file url="PROJECT" charset="GBK" />
+  </component>
+</project>

@@ -38,8 +38,8 @@ public class MD5Util {
   
     }
 
-    //public static void main(String[] args) {
-    //    String nihao = getMd5("123456string");
-    //    System.out.println(nihao);
-    //}
+    public static void main(String[] args) {
+        String nihao = getMd5("123456string");
+        System.out.println(nihao);
+    }
 }
