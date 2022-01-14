@@ -1,20 +1,20 @@
 package com.bigshen.chatDemoService.ArtConcurrentBook.chapter01;
 
 /**
- * ²¢·¢ºÍµ¥Ïß³ÌÖ´ĞĞ²âÊÔ
+ * å¹¶å‘å’Œå•çº¿ç¨‹æ‰§è¡Œæµ‹è¯•
  * 
  * @author tengfei.fangtf
- * @version $Id: ConcurrencyTest.java, v 0.1 2014-7-18 ÏÂÎç10:03:31 tengfei.fangtf Exp $
+ * @version $Id: ConcurrencyTest.java, v 0.1 2014-7-18 ä¸‹åˆ10:03:31 tengfei.fangtf Exp $
  */
 public class ConcurrencyTest {
 
-    /** Ö´ĞĞ´ÎÊı */
+    /** æ‰§è¡Œæ¬¡æ•° */
     private static final long count = 10000l;
 
     public static void main(String[] args) throws InterruptedException {
-        //²¢·¢¼ÆËã
+        //å¹¶å‘è®¡ç®—
         concurrency();
-        //µ¥Ïß³Ì¼ÆËã
+        //å•çº¿ç¨‹è®¡ç®—
         serial();
     }
 

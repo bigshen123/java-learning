@@ -10,11 +10,11 @@ import java.lang.management.ThreadMXBean;
 public class MultiThread {
 
     public static void main(String[] args) {
-        // »ñÈ¡JavaÏß³Ì¹ÜÀíMXBean
+        // è·å–Javaçº¿ç¨‹ç®¡ç†MXBean
         ThreadMXBean threadMXBean = ManagementFactory.getThreadMXBean();
-        // ²»ĞèÒª»ñÈ¡Í¬²½µÄmonitorºÍsynchronizerĞÅÏ¢£¬½ö½ö»ñÈ¡Ïß³ÌºÍÏß³Ì¶ÑÕ»ĞÅÏ¢
+        // ä¸éœ€è¦è·å–åŒæ­¥çš„monitorå’Œsynchronizerä¿¡æ¯ï¼Œä»…ä»…è·å–çº¿ç¨‹å’Œçº¿ç¨‹å †æ ˆä¿¡æ¯
         ThreadInfo[] threadInfos = threadMXBean.dumpAllThreads(false, false);
-        // ±éÀúÏß³ÌĞÅÏ¢£¬½ö´òÓ¡Ïß³ÌIDºÍÏß³ÌÃû³ÆĞÅÏ¢
+        // éå†çº¿ç¨‹ä¿¡æ¯ï¼Œä»…æ‰“å°çº¿ç¨‹IDå’Œçº¿ç¨‹åç§°ä¿¡æ¯
         for (ThreadInfo threadInfo : threadInfos) {
             System.out.println("[" + threadInfo.getThreadId() + "] " + threadInfo.getThreadName());
         }

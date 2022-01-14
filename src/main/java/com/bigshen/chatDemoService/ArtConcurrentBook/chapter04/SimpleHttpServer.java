@@ -13,12 +13,12 @@ import java.net.Socket;
  * 6-21
  */
 public class SimpleHttpServer {
-    // ´¦ÀíHttpRequestµÄÏß³Ì³Ø
+    // å¤„ç†HttpRequestçš„çº¿ç¨‹æ± 
     static ThreadPool<HttpRequestHandler> threadPool = new DefaultThreadPool<HttpRequestHandler>(11);
-    // SimpleHttpServerµÄ¸ùÂ·¾¶
+    // SimpleHttpServerçš„æ ¹è·¯å¾„
     static String                         basePath;
     static ServerSocket                   serverSocket;
-    // ·şÎñ¼àÌı¶Ë¿Ú
+    // æœåŠ¡ç›‘å¬ç«¯å£
     static int                            port       = 8080;
 
     public static void setPort(int port) {
@@ -34,13 +34,13 @@ public class SimpleHttpServer {
     }
 
     /**
-     Æô¶¯SimpleHttpServer
+     å¯åŠ¨SimpleHttpServer
      */
     public static void start() throws Exception {
         serverSocket = new ServerSocket(port);
         Socket socket = null;
         while ((socket = serverSocket.accept()) != null) {
-            // ½ÓÊÕÒ»¸ö¿Í»§¶ËSocket£¬Éú³ÉÒ»¸öHttpRequestHandler£¬·ÅÈëÏß³Ì³ØÖ´ĞĞ
+            // æ¥æ”¶ä¸€ä¸ªå®¢æˆ·ç«¯Socketï¼Œç”Ÿæˆä¸€ä¸ªHttpRequestHandlerï¼Œæ”¾å…¥çº¿ç¨‹æ± æ‰§è¡Œ
             threadPool.execute(new HttpRequestHandler(socket));
         }
         serverSocket.close();
@@ -64,10 +64,10 @@ public class SimpleHttpServer {
             try {
                 reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 String header = reader.readLine();
-                // ÓÉÏà¶ÔÂ·¾¶¼ÆËã³ö¾ø¶ÔÂ·¾¶
+                // ç”±ç›¸å¯¹è·¯å¾„è®¡ç®—å‡ºç»å¯¹è·¯å¾„
                 String filePath = basePath + header.split(" ")[1];
                 out = new PrintWriter(socket.getOutputStream());
-                // Èç¹ûÇëÇó×ÊÔ´µÄºó×ºÎªjpg»òÕßico£¬Ôò¶ÁÈ¡×ÊÔ´²¢Êä³ö
+                // å¦‚æœè¯·æ±‚èµ„æºçš„åç¼€ä¸ºjpgæˆ–è€…icoï¼Œåˆ™è¯»å–èµ„æºå¹¶è¾“å‡º
                 if (filePath.endsWith("jpg") || filePath.endsWith("ico")) {
                     in = new FileInputStream(filePath);
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -103,14 +103,14 @@ public class SimpleHttpServer {
         }
     }
 
-    // ¹Ø±ÕÁ÷»òÕßSocket
+    // å…³é—­æµæˆ–è€…Socket
     private static void close(Closeable... closeables) {
         if (closeables != null) {
             for (Closeable closeable : closeables) {
                 try {
                     closeable.close();
                 } catch (Exception ex) {
-                    // ºöÂÔ
+                    // å¿½ç•¥
                 }
             }
         }

@@ -1,1 +1,65 @@
-package com.bigshen.chatDemoService.ArtConcurrentBook.chapter06;import java.util.concurrent.ExecutionException;import java.util.concurrent.ForkJoinPool;import java.util.concurrent.Future;import java.util.concurrent.RecursiveTask;/** * ¼ÆÊıÆ÷ÈÎÎñ *  * @author tengfei.fangtf * @version $Id: CountTask.java, v 0.1 2015-8-1 ÉÏÎç12:00:29 tengfei.fangtf Exp $ */public class CountTask extends RecursiveTask<Integer> {    private static final int THRESHOLD = 2; // ãĞÖµ    private int              start;    private int              end;    public CountTask(int start, int end) {        this.start = start;        this.end = end;    }    @Override    protected Integer compute() {        int sum = 0;        // Èç¹ûÈÎÎñ×ã¹»Ğ¡¾Í¼ÆËãÈÎÎñ        boolean canCompute = (end - start) <= THRESHOLD;        if (canCompute) {            for (int i = start; i <= end; i++) {                sum += i;            }        } else {            // Èç¹ûÈÎÎñ´óÓÚãĞÖµ£¬¾Í·ÖÁÑ³ÉÁ½¸ö×ÓÈÎÎñ¼ÆËã            int middle = (start + end) / 2;            CountTask leftTask = new CountTask(start, middle);            CountTask rightTask = new CountTask(middle + 1, end);            //Ö´ĞĞ×ÓÈÎÎñ            leftTask.fork();            rightTask.fork();            //µÈ´ı×ÓÈÎÎñÖ´ĞĞÍê£¬²¢µÃµ½Æä½á¹û            int leftResult = leftTask.join();            int rightResult = rightTask.join();            //ºÏ²¢×ÓÈÎÎñ            sum = leftResult + rightResult;        }        return sum;    }    public static void main(String[] args) {        ForkJoinPool forkJoinPool = new ForkJoinPool();        // Éú³ÉÒ»¸ö¼ÆËãÈÎÎñ£¬¸ºÔğ¼ÆËã1+2+3+4        CountTask task = new CountTask(1, 4);        // Ö´ĞĞÒ»¸öÈÎÎñ        Future<Integer> result = forkJoinPool.submit(task);        try {            System.out.println(result.get());        } catch (InterruptedException e) {        } catch (ExecutionException e) {        }    }}
+package com.bigshen.chatDemoService.ArtConcurrentBook.chapter06;
+
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.Future;
+import java.util.concurrent.RecursiveTask;
+
+/**
+ * è®¡æ•°å™¨ä»»åŠ¡
+ * 
+ * @author tengfei.fangtf
+ * @version $Id: CountTask.java, v 0.1 2015-8-1 ä¸Šåˆ12:00:29 tengfei.fangtf Exp $
+ */
+public class CountTask extends RecursiveTask<Integer> {
+
+    private static final int THRESHOLD = 2; // é˜ˆå€¼
+    private int              start;
+    private int              end;
+
+    public CountTask(int start, int end) {
+        this.start = start;
+        this.end = end;
+    }
+
+    @Override
+    protected Integer compute() {
+        int sum = 0;
+
+        // å¦‚æœä»»åŠ¡è¶³å¤Ÿå°å°±è®¡ç®—ä»»åŠ¡
+        boolean canCompute = (end - start) <= THRESHOLD;
+        if (canCompute) {
+            for (int i = start; i <= end; i++) {
+                sum += i;
+            }
+        } else {
+            // å¦‚æœä»»åŠ¡å¤§äºé˜ˆå€¼ï¼Œå°±åˆ†è£‚æˆä¸¤ä¸ªå­ä»»åŠ¡è®¡ç®—
+            int middle = (start + end) / 2;
+            CountTask leftTask = new CountTask(start, middle);
+            CountTask rightTask = new CountTask(middle + 1, end);
+            //æ‰§è¡Œå­ä»»åŠ¡
+            leftTask.fork();
+            rightTask.fork();
+            //ç­‰å¾…å­ä»»åŠ¡æ‰§è¡Œå®Œï¼Œå¹¶å¾—åˆ°å…¶ç»“æœ
+            int leftResult = leftTask.join();
+            int rightResult = rightTask.join();
+            //åˆå¹¶å­ä»»åŠ¡
+            sum = leftResult + rightResult;
+        }
+        return sum;
+    }
+
+    public static void main(String[] args) {
+        ForkJoinPool forkJoinPool = new ForkJoinPool();
+        // ç”Ÿæˆä¸€ä¸ªè®¡ç®—ä»»åŠ¡ï¼Œè´Ÿè´£è®¡ç®—1+2+3+4
+        CountTask task = new CountTask(1, 4);
+        // æ‰§è¡Œä¸€ä¸ªä»»åŠ¡
+        Future<Integer> result = forkJoinPool.submit(task);
+        try {
+            System.out.println(result.get());
+        } catch (InterruptedException e) {
+        } catch (ExecutionException e) {
+        }
+    }
+
+}

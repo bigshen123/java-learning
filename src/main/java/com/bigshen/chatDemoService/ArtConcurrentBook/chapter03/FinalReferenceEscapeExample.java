@@ -6,8 +6,8 @@ public class FinalReferenceEscapeExample {
     static FinalReferenceEscapeExample obj;
 
     public FinalReferenceEscapeExample() {
-        i = 1; //1写final域
-        obj = this; //2 this引用在此“逸出”
+        i = 1; //1写final??
+        obj = this; //2 this?????????????
     }
 
     public static void writer() {
