@@ -1,4 +1,4 @@
-package com.bigshen.chatDemoService.sort;
+package com.bigshen.chatDemoService.leetcode.sort;
 
 import java.util.Arrays;
 

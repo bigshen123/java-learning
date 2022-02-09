@@ -1,4 +1,4 @@
-package com.bigshen.chatDemoService.sort.insert;
+package com.bigshen.chatDemoService.leetcode.sort.insert;
 
 /**
  * @Author BYJ
