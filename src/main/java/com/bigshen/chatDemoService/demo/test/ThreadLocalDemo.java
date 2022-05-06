@@ -1,4 +1,4 @@
-package com.bigshen.chatDemoService.demo;
+package com.bigshen.chatDemoService.demo.test;
 
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -47,7 +47,7 @@ public class ThreadLocalDemo implements Runnable {
     private Student getStudent() {
         student = localStudent.get();
 
-    // 如果不重写初始化方法，则需要判断是否为空，然后手动为ThreadLocal赋值，否则的话会报空指针异常// if(student == null){// student = new com.bigshen.chatDemoService.demo.Student();// localStudent.set(student);// }
+    // 如果不重写初始化方法，则需要判断是否为空，然后手动为ThreadLocal赋值，否则的话会报空指针异常// if(student == null){// student = new com.bigshen.chatDemoService.demo.test.Student();// localStudent.set(student);// }
 
         return student;
     }

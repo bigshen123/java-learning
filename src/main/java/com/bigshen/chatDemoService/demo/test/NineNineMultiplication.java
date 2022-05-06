@@ -1,4 +1,4 @@
-package com.bigshen.chatDemoService.demo;
+package com.bigshen.chatDemoService.demo.test;
 
 /**
  * @Description:九九乘法表

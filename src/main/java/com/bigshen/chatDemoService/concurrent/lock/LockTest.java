@@ -29,8 +29,8 @@ public class LockTest {
 
         private void sale() {
             try {
-                int name = Integer.parseInt(Thread.currentThread().getName());
                 lock.lock();
+                int name = Integer.parseInt(Thread.currentThread().getName());
                 while ((count % 3) != name) {
                     try {
                         condition.await();

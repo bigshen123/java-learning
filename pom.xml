@@ -121,7 +121,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>RELEASE</version>
+            <version>4.10</version>
             <scope>compile</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
@@ -223,7 +223,7 @@
         <dependency>
             <groupId>com.ctrip.framework.apollo</groupId>
             <artifactId>apollo-client</artifactId>
-            <version>1.1.1</version>
+            <version>1.5.1</version>
         </dependency>
         <!--MyBatis分页插件starter-->
         <dependency>

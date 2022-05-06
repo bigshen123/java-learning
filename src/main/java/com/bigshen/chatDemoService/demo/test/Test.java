@@ -1,4 +1,4 @@
-package com.bigshen.chatDemoService.demo;
+package com.bigshen.chatDemoService.demo.test;
 
 /**
  * @Author BYJ
