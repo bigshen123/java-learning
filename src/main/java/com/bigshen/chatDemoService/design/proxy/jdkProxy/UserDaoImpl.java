@@ -1,7 +1,5 @@
 package com.bigshen.chatDemoService.design.proxy.jdkProxy;
 
-import com.bigshen.chatDemoService.concurrent.hashmap.User;
-
 /**
  * @ClassName UserDaoImpl
  * @Description:TODO

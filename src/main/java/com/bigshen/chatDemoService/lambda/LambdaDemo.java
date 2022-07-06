@@ -1,6 +1,8 @@
 package com.bigshen.chatDemoService.lambda;
 
 
+import cn.hutool.system.UserInfo;
+import com.bigshen.chatDemoService.concurrent.hashmap.User;
 import com.bigshen.chatDemoService.utils.entity.OperateInfo;
 import com.bigshen.chatDemoService.utils.entity.OrderInfo;
 import com.bigshen.chatDemoService.utils.entity.OrderInfoResponse;
@@ -21,10 +23,10 @@ import java.util.stream.Stream;
  */
 public class LambdaDemo {
     @Test
-    public void forEachDemo(){
-        ArrayList<String> list=new ArrayList<>(Arrays.asList("I","LOVE","YOU"));
+    public void forEachDemo() {
+        ArrayList<String> list = new ArrayList<>(Arrays.asList("I", "LOVE", "YOU"));
         list.forEach(s -> {
-            if (s.length()>3){
+            if (s.length() > 3) {
                 System.out.println(s);
             }
         });
@@ -35,8 +37,9 @@ public class LambdaDemo {
         map.put(3, "three");
         map.forEach((k, v) -> System.out.println(k + "=" + v));
     }
+
     @Test
-    public void removeIfDemo(){
+    public void removeIfDemo() {
         ArrayList<String> list = new ArrayList<>(Arrays.asList("I", "love", "you", "too"));
         /*Iterator<String> iterator = list.iterator();
         while (iterator.hasNext()){
@@ -44,24 +47,25 @@ public class LambdaDemo {
                 iterator.remove();
             }
         }*/
-        list.removeIf(s -> s.length()>3);
+        list.removeIf(s -> s.length() > 3);
         System.out.println(list);
     }
+
     @Test
-    public void replaceAllDemo(){
+    public void replaceAllDemo() {
         // 使用下标实现元素替换
-        ArrayList<String> list = new ArrayList<>(Arrays.asList("I", "love", "you", "too","lovely"));
+        ArrayList<String> list = new ArrayList<>(Arrays.asList("I", "love", "you", "too", "lovely"));
       /*  for(int i=0; i<list.size(); i++){
             String str = list.get(i);
             if(str.length()>3)
                 list.set(i, str.toUpperCase());
         }*/
-      list.replaceAll(str -> {
-          if (str.length()>3){
-              return str.toUpperCase();
-          }
-          return str;
-      });
+        list.replaceAll(str -> {
+            if (str.length() > 3) {
+                return str.toUpperCase();
+            }
+            return str;
+        });
         // 使用replaceAll()结合Lambda表达式实现
         HashMap<Integer, String> map = new HashMap<>();
         map.put(1, "one");
@@ -71,8 +75,9 @@ public class LambdaDemo {
         System.out.println(list);
         System.out.println(map);
     }
+
     @Test
-    public void sortDemo(){
+    public void sortDemo() {
         // Collections.sort()方法
         ArrayList<String> list = new ArrayList<>(Arrays.asList("I", "love", "you", "to"));
         /*Collections.sort(list, new Comparator<String>(){
@@ -81,16 +86,13 @@ public class LambdaDemo {
                 return str1.length()-str2.length();
             }
         });*/
-        list.sort((str1, str2) -> str2.length()-str1.length());
+        list.sort((str1, str2) -> str2.length() - str1.length());
         //list.sort(Comparator.comparingInt(String::length));
         System.out.println(list);
     }
-    @Test
-    public void splitratorDemo(){
 
-    }
     @Test
-    public void getOrDefaultDemo(){
+    public void getOrDefaultDemo() {
         // 查询Map中指定的值，不存在时使用默认值
         HashMap<Integer, String> map = new HashMap<>();
         map.put(1, "one");
@@ -105,8 +107,9 @@ public class LambdaDemo {
         // Java8使用Map.getOrDefault()
         System.out.println(map.getOrDefault(4, "NoValue")); // 2
     }
+
     @Test
-    public void computeIfAbsentDemo(){
+    public void computeIfAbsentDemo() {
         Map<Integer, Set<String>> map = new HashMap<>();
         // Java7及以前的实现方式
         /*if(map.containsKey(1)){
@@ -120,22 +123,24 @@ public class LambdaDemo {
         map.computeIfAbsent(1, v -> new HashSet<>()).add("yi");
         System.out.println(map);
     }
+
     @Test
-    public void streamDemo(){
-        Stream<String> stream=Stream.of("I", "love", "you", "too");
+    public void streamDemo() {
+        Stream<String> stream = Stream.of("I", "love", "you", "too");
         ArrayList<Object> list = stream.collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
         System.out.println(list);
-        List<Userinfo> userinfos=new ArrayList<>();
+        List<Userinfo> userinfos = new ArrayList<>();
     }
+
     @Test
-    public void test(){
+    public void test() {
         List<OrderInfo> orderInfoList = Lists.newArrayList();
         List<OperateInfo> operateInfoList = Lists.newArrayList();
-        orderInfoList.add(new OrderInfo(1,1,2,2));
-        orderInfoList.add(new OrderInfo(2,2,3,1));
-        operateInfoList.add(new OperateInfo(1,"增加"));
-        operateInfoList.add(new OperateInfo(2,"修改"));
-        operateInfoList.add(new OperateInfo(3,"删除"));
+        orderInfoList.add(new OrderInfo(1, 1, 2, 2));
+        orderInfoList.add(new OrderInfo(2, 2, 3, 1));
+        operateInfoList.add(new OperateInfo(1, "增加"));
+        operateInfoList.add(new OperateInfo(2, "修改"));
+        operateInfoList.add(new OperateInfo(3, "删除"));
         //operateInfoList转map(key:operateId  value:operateName)
         Map<Integer, String> operateMap = operateInfoList.stream().collect(Collectors.
                 toMap(OperateInfo::getOperateId, OperateInfo::getOperateName, (x, y) -> x));
@@ -169,7 +174,7 @@ public class LambdaDemo {
     }
 
     @Test
-    public void peekTest(){
+    public void peekTest() {
         List<Persion> lists = new ArrayList<Persion>();
         lists.add(new Persion(1L, "p1"));
         lists.add(new Persion(2L, "p2"));
@@ -186,11 +191,37 @@ public class LambdaDemo {
     }
 
     @Test
-    public void demo(){
-        String[] test={"tom","jerry","lily","lucy","apple","atom","toms","tommy"};
+    public void demo() {
+        String[] test = {"tom", "jerry", "lily", "lucy", "apple", "atom", "toms", "tommy"};
         List<String> list = Arrays.asList(test);
-        list.stream().filter(s->s.length()>=4).filter(s->s.contains("tom")).map(s->s+s.length()).forEach(System.out::println);
+        list.stream().filter(s -> s.length() >= 4).filter(s -> s.contains("tom")).map(s -> s + s.length()).forEach(System.out::println);
+    }
 
+    @Test
+    public void matchTest() {
+        // 定制排序
+        List<User> employees = Arrays.asList(
+                new User("张三", 18),
+                new User("李四", 38),
+                new User("王五", 50),
+                new User("赵六", 16),
+                new User("田七", 8)
+        );
+        //anyMatch 检查是否匹配所有元素
+        Boolean isAllMatch = employees.stream().allMatch((x) -> x.getAge() > 10);
+        System.out.println("是否匹配所有元素:" + isAllMatch);
+        //anyMatch：检查是否至少匹配一个元素
+        Boolean isAnyMatch = employees.stream().anyMatch((x) -> x.getAge() > 10);
+        System.out.println("是否匹配至少一个元素:" + isAnyMatch);
+    }
+
+    @Test
+    public void reduceTest(){
+        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5 ,6 ,7 ,8 , 9, 10);
+        // 按照下面的规则进行累加操作
+        // reduce的规约，就是把前面定义的起始值，作为了x
+        Integer num = list.stream().reduce(0, Integer::sum);
+        System.out.println(num);
     }
 
 }
