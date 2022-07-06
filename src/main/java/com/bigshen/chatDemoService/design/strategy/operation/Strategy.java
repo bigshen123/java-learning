@@ -1,4 +1,4 @@
-package com.bigshen.chatDemoService.design.strategy;
+package com.bigshen.chatDemoService.design.strategy.operation;
 
 /**
  * @Description: 策略接口

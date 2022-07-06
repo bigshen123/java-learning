@@ -1,5 +1,7 @@
 package com.bigshen.chatDemoService.demo;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * @Author BYJ
  * @Date 2021/3/14 10:10
@@ -24,5 +26,8 @@ public class Test {
         String s="1111";
         Test.changeValue(s);
         new Test(s).printValue();
+        String a = "adssasdsaasddadas";
+        int count = StringUtils.countMatches(a, 'a');
+        System.out.println(count);
     }
 }

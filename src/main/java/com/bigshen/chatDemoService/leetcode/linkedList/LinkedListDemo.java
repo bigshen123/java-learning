@@ -39,7 +39,24 @@ public class LinkedListDemo {
     }
 
     /**
-     * 单链表反转
+     * 单链表反转：递归解法
+     * 时间复杂度O（n） 空间复杂度O（n）
+     * @param head 链表
+     * @return 反转后的链表
+     */
+    public ListNode reverseList(ListNode head) {
+        if(head == null || head.next == null) {
+            return head;
+        }
+        ListNode newHead = reverseList(head.next);
+        head.next.next = head;
+        head.next = null;
+        return newHead;
+    }
+
+    /**
+     * 单链表反转：迭代解法
+     * 时间复杂度O（n） 空间复杂度O（1）
      * @param head
      * @return
      */

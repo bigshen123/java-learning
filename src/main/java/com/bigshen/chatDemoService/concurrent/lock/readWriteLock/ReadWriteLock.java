@@ -1,4 +1,4 @@
-package com.bigshen.chatDemoService.concurrent.lock;
+package com.bigshen.chatDemoService.concurrent.lock.readWriteLock;
 
 /**
  * @Description:
