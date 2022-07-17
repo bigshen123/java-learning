@@ -29,8 +29,8 @@ public class ReflectionPerformance {
      * 反射方式调用
      */
     public static void test02() throws Exception {
-        Class clazz = Class.forName("com.bigshen.chatDemoService.concurrent.hashmap.User");
-        Method getName = clazz.getDeclaredMethod("getName", null);
+        Class<?> clazz = Class.forName("com.bigshen.chatDemoService.concurrent.hashmap.User");
+        Method getName = clazz.getDeclaredMethod("getName", (Class<?>) null);
         User user = (User) clazz.newInstance();
         long startTime = System.currentTimeMillis();
         for (int i = 0; i < 1000000000; i++) {
@@ -45,8 +45,8 @@ public class ReflectionPerformance {
      * 反射方式调用，关闭权限检查
      */
     public static void test03() throws Exception {
-        Class clazz = Class.forName("com.moxi.interview.study.annotation.User");
-        Method getName = clazz.getDeclaredMethod("getName", null);
+        Class<?> clazz = Class.forName("com.moxi.interview.study.annotation.User");
+        Method getName = clazz.getDeclaredMethod("getName", (Class<?>) null);
         User user = (User) clazz.newInstance();
         long startTime = System.currentTimeMillis();
         getName.setAccessible(true);
