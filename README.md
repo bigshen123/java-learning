@@ -10,3 +10,8 @@
 - shell：常用脚本
 - koal : koal公司笔记
 - doc : 文档
+
+
+JAVA学习资源：
+> Java全栈只是点汇总上：https://www.pdai.tech/md/interview/x-interview.html
+> Java全栈只是点汇总下：https://www.pdai.tech/md/interview/x-interview-2.html
