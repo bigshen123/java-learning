@@ -13,5 +13,19 @@
 
 
 JAVA学习资源：
+>编程导航：https://www.code-nav.cn/
+>
 > Java全栈只是点汇总上：https://www.pdai.tech/md/interview/x-interview.html
+> 
 > Java全栈只是点汇总下：https://www.pdai.tech/md/interview/x-interview-2.html
+> 
+> JavaGuide：https://javaguide.cn/home.html#%E5%BF%85%E7%9C%8B%E4%B8%93%E6%A0%8F
+> 
+>陌溪笔记：http://note.moguit.cn/#/README
+>
+>后端架构师技术图谱：https://github.com/xingshaocheng/architect-awesome
+>
+>Java技术生态：https://github.com/aalansehaiyang/technology-talk
+>
+>JCSprout：https://github.com/crossoverJie/JCSprout
+
