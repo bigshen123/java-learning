@@ -1,7 +1,6 @@
 package com.bigshen.chatDemoService.utils.qrcode;
 
 import com.bigshen.chatDemoService.utils.CmdUtil;
-import com.bigshen.chatDemoService.utils.enums.FastdfsUtil;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
@@ -96,14 +95,9 @@ public class QRCode {
 
          		logo = ImageIO.read((new File("." + System.getProperty("file.separator") + "logo.jpg")));
     		} catch (Exception e) {
-    			try {
-    				logo = ImageIO.read((FastdfsUtil.class.getClassLoader().getResourceAsStream("logo.jpg")));
-    			} catch (IOException e1) {
-    				// TODO Auto-generated catch block
-    				e1.printStackTrace();
-    			}
+                //logo = ImageIO.read((FastdfsUtil.class.getClassLoader().getResourceAsStream("logo.jpg")));
 
-    		}
+            }
             /**
              * 设置logo的大小,本人设置为二维码图片的20%,因为过大会盖掉二维码
              */
@@ -177,7 +171,7 @@ public class QRCode {
             //二维码生成的路径，但是实际项目中，我们是把这生成的二维码显示到界面上的，因此下面的折行代码可以注释掉
             //可以看到这个方法最终返回的是这个二维码的imageBase64字符串
             //前端用 <img src="data:image/png;base64,${imageBase64QRCode}"/>  其中${imageBase64QRCode}对应二维码的imageBase64字符串
-            File qrfile= new File("." + System.getProperty("file.separator") + new Date().getTime() + ".png");
+            File qrfile= new File("." + System.getProperty("file.separator") + new Date() + ".png");
             ImageIO.write(image, "png", qrfile); //TODO  
 
             String imageBase64QRCode =  Base64.encodeBase64URLSafeString(baos.toByteArray());
