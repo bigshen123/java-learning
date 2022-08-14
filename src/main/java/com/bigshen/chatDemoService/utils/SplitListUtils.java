@@ -1,16 +1,9 @@
 package com.bigshen.chatDemoService.utils;
 
 import com.google.common.collect.Lists;
-import com.sun.deploy.util.GeneralUtil;
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.poi.ss.formula.functions.T;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author byj
