@@ -1,4 +1,4 @@
-package com.bigshen.learningDemo.demo.list;
+package com.bigshen.learningDemo.demo.collections;
 
 import java.util.ArrayList;
 import java.util.Iterator;
