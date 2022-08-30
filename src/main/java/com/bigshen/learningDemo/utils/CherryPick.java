@@ -8,5 +8,6 @@ package com.bigshen.learningDemo.utils;
 public class CherryPick {
     public static void main(String[] args) {
         System.out.println("Cherry-Pick。。。。。。");
+        System.out.println("Cherry-Pick 第一次提交");
     }
 }
