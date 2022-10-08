@@ -1,4 +1,4 @@
-package com.bigshen.learningDemo.demo.jvm;
+package com.bigshen.learningDemo.demo.jvm.commandLine;
 
 /**
  * @Author BYJ
