@@ -1,5 +1,10 @@
 package com.bigshen.learningDemo.lambda.guigu;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.Instant;
@@ -12,20 +17,30 @@ import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
 
 public class TestLocalDateTime {
+
+	protected static final ThreadLocal<SimpleDateFormat> SIM_DATE_TIME = ThreadLocal.withInitial(() ->
+			new SimpleDateFormat("yyyy-MM-dd HH:mm"));
 	
 	//6.ZonedDate、ZonedTime、ZonedDateTime ： 带时区的时间或日期
 	@Test
 	public void test7(){
 		LocalDateTime ldt = LocalDateTime.now(ZoneId.of("Asia/Shanghai"));
 		System.out.println(ldt);
+		LocalDateTime ldt2 = LocalDateTime.now();
+		System.out.println(ldt2);
 		
 		ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("US/Pacific"));
 		System.out.println(zdt);
+
 	}
 	
 	@Test
@@ -86,9 +101,20 @@ public class TestLocalDateTime {
 	//Duration : 用于计算两个“时间”间隔
 	//Period : 用于计算两个“日期”间隔
 	@Test
-	public void test3(){
-		Instant ins1 = Instant.now();
-		
+	public void test3() throws ParseException {
+		Instant now = Instant.now();
+		System.out.println(now);
+		SimpleDateFormat sdf = SIM_DATE_TIME.get();
+		now = sdf.parse(sdf.format(Date.from(now))).toInstant();
+		System.out.println(now);
+
+
+		Instant instant = Instant.now().atZone(ZoneId.systemDefault()).toInstant();
+		System.out.println(instant);
+
+		Instant instant2 = Instant.now().atZone(ZoneId.of("Asia/Shanghai")).toInstant();
+		System.out.println(instant2);
+
 		System.out.println("--------------------");
 		try {
 			Thread.sleep(1000);
@@ -97,7 +123,7 @@ public class TestLocalDateTime {
 		
 		Instant ins2 = Instant.now();
 		
-		System.out.println("所耗费时间为：" + Duration.between(ins1, ins2));
+		System.out.println("所耗费时间为：" + Duration.between(now, ins2));
 		
 		System.out.println("----------------------------------");
 		
