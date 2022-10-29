@@ -1,7 +1,10 @@
 package com.bigshen.learningDemo.demo.jvm.classLoader;
 
 import com.bigshen.learningDemo.concurrent.hashmap.User;
+import com.bigshen.learningDemo.utils.SnowflakeIdWorker;
+import org.junit.Test;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
@@ -14,7 +17,8 @@ public class ReflectionPerformance {
     /**
      * 普通方法
      */
-    public static void test01(){
+    @Test
+    public void test01(){
         User user = new User();
         long startTime = System.currentTimeMillis();
         for (int i = 0; i < 1000000000; i++) {
@@ -28,7 +32,8 @@ public class ReflectionPerformance {
     /**
      * 反射方式调用
      */
-    public static void test02() throws Exception {
+    @Test
+    public void test02() throws Exception {
         Class<?> clazz = Class.forName("com.bigshen.learningDemo.concurrent.hashmap.User");
         Method getName = clazz.getDeclaredMethod("getName", (Class<?>) null);
         User user = (User) clazz.newInstance();
@@ -44,7 +49,8 @@ public class ReflectionPerformance {
     /**
      * 反射方式调用，关闭权限检查
      */
-    public static void test03() throws Exception {
+    @Test
+    public void test03() throws Exception {
         Class<?> clazz = Class.forName("com.moxi.interview.study.annotation.User");
         Method getName = clazz.getDeclaredMethod("getName", (Class<?>) null);
         User user = (User) clazz.newInstance();
@@ -56,10 +62,5 @@ public class ReflectionPerformance {
         long endTime = System.currentTimeMillis();
 
         System.out.println("反射方式执行10亿次getName的时间:" + (endTime - startTime) + " ms");
-    }
-    public static void main(String[] args) throws Exception {
-        test01();
-        test02();
-        test03();
     }
 }
