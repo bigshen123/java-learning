@@ -130,6 +130,19 @@ public class LambdaDemo {
         ArrayList<Object> list = stream.collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
         System.out.println(list);
         List<Userinfo> userinfos = new ArrayList<>();
+        Date dbDate = new Date();
+        List<Date> dates = new ArrayList<>();
+        long time = dbDate.getTime();
+        time += 60000;
+        Date date = new Date(time);
+        System.out.println(date.getTime());
+        Date date1 = new Date(1668505658191L);
+        System.out.println(date1);
+        System.out.println(date);
+        dates.add(date);
+        if (dates.stream().anyMatch(i->i.after(new Date(i.getTime() + 180000)))){
+            System.out.println("adsasad");
+        }
     }
 
     @Test

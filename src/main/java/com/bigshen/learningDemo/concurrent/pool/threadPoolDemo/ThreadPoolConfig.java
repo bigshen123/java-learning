@@ -36,7 +36,7 @@ public class ThreadPoolConfig {
      * 执行一般任务，定长线程池
      * @return
      */
-    @Bean(name = "threadPoolTaskExecutor")
+    @Bean(name = "taskExecutor")
     public ThreadPoolTaskExecutor threadPoolTaskExecutor() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         executor.setMaxPoolSize(maxPoolSize);
