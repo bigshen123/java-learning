@@ -1,4 +1,4 @@
-package com.bigshen.learningDemo.demo.lambda.future;
+package com.bigshen.learningDemo.lambda.future;
 
 import org.junit.Test;
 

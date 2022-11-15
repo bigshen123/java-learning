@@ -1,4 +1,4 @@
-package com.bigshen.learningDemo.concurrent.pool;
+package com.bigshen.learningDemo.concurrent.pool.threadPoolDemo;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;

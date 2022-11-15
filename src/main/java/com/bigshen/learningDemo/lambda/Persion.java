@@ -1,4 +1,4 @@
-package com.bigshen.learningDemo.demo.lambda;
+package com.bigshen.learningDemo.lambda;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

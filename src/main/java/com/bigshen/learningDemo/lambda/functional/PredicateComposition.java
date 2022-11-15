@@ -1,4 +1,4 @@
-package com.bigshen.learningDemo.demo.lambda.functional;
+package com.bigshen.learningDemo.lambda.functional;
 
 /**
  * @ClassName PredicateComposition

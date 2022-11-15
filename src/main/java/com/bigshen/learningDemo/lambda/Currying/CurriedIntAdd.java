@@ -1,4 +1,4 @@
-package com.bigshen.learningDemo.demo.lambda.Currying;
+package com.bigshen.learningDemo.lambda.Currying;
 
 /**
  * @ClassName CurriedIntAdd

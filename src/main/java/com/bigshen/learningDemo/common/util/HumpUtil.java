@@ -1,5 +1,6 @@
 package com.bigshen.learningDemo.common.util;
 
+import cn.hutool.core.util.StrUtil;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
 
@@ -181,5 +182,11 @@ public class HumpUtil {
             return null;
         }
         return humpToUnderline(para).replaceAll("_", "-").toLowerCase();
+    }
+
+    public static void main(String[] args) {
+        String test = "UserGroup";
+        String s = HumpUtil.humpToUnderline(StrUtil.lowerFirst(test));
+        System.out.println(s);
     }
 }

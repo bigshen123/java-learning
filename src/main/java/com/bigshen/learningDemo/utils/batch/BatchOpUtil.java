@@ -2,16 +2,19 @@ package com.bigshen.learningDemo.utils.batch;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.MapUtils;
+import org.hamcrest.Matchers;
+import org.junit.Test;
 
 import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Consumer;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * @author byj
@@ -71,5 +74,47 @@ public class BatchOpUtil {
             Thread.currentThread().interrupt();
         }
         return successIds;
+    }
+
+    @Test
+    public void batchIdsOpTest(){
+        List<String> ids = new ArrayList<>(3);
+        List<String> successIds = BatchOpUtil.batchIdsOp(ids, id -> {
+        }, null, "测试id批量操作");
+        assertThat(successIds, Matchers.hasSize(0));
+        ids.add("1");
+        successIds = BatchOpUtil.batchIdsOp(ids, id -> {
+        }, null, "测试id批量操作");
+        assertThat(successIds, Matchers.hasSize(1));
+        ids.add("2");
+        Map<String, CompletableFuture<Boolean>> idCompletableFutures = new HashMap<>(ids.size());
+        successIds = BatchOpUtil.batchIdsOp(ids, id -> idCompletableFutures.put(id, CompletableFuture.supplyAsync(() -> {
+            System.out.println("id:" + id + ",start time:" + System.currentTimeMillis());
+            return true;
+        })), idCompletableFutures, "测试id批量操作");
+        assertThat(successIds, Matchers.hasSize(2));
+    }
+
+    @Test
+    public void uriTest(){
+        String url = "http://10.0.210.152:60080/api/v1/secondary/rms/syncPrimaryGwData";
+        URI uri = null;
+        try {
+            uri = new URI(url);
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println(uri);
+        String s = uri.toString();
+        System.out.println(s);
+        System.out.println(s.equals(url));
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSSSS");
+        String format1 = format.format(new Date());
+        System.out.println(format1);
+
+        String name = BatchOpUtil.class.getName();
+        System.out.println(name);
+        String substring = name.substring(name.lastIndexOf(".") + 1);
+        System.out.println(substring);
     }
 }

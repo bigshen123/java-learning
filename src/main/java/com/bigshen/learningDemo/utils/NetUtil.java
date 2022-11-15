@@ -1,4 +1,4 @@
-package kl.gw.cloud.rms.util;
+package com.bigshen.learningDemo.utils;
 
 import inet.ipaddr.AddressStringException;
 import inet.ipaddr.IPAddressString;
@@ -132,6 +132,11 @@ public class NetUtil {
     public static String prefixToV6NetMask(int prefix) throws AddressStringException {
         IPAddressString addressString = new IPAddressString(HOST_V6_NETMASK + "/" + prefix);
         return addressString.toAddress().getNetwork().getNetworkMask(prefix, false).toString();
+    }
+
+    public static void main(String[] args) {
+        String user = urlMerge("http://10.0.210.152:60700/syncGwData", "User");
+        System.out.println(user);
     }
 
 

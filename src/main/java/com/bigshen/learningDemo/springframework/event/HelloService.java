@@ -1,5 +1,10 @@
-package com.bigshen.learningDemo.springframework.event;/**
- * @author  byj
- * @date  2022/11/2 
- */public interface HelloService {
+package com.bigshen.learningDemo.springframework.event;
+
+/**
+ * @author byj
+ * @date 2022/11/2
+ */
+public interface HelloService {
+
+    public Object hello(Integer id);
 }

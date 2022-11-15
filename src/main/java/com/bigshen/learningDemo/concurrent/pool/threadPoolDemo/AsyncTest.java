@@ -1,4 +1,4 @@
-package com.bigshen.learningDemo.concurrent.pool;
+package com.bigshen.learningDemo.concurrent.pool.threadPoolDemo;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

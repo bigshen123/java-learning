@@ -1,4 +1,4 @@
-package com.bigshen.learningDemo.concurrent.pool;
+package com.bigshen.learningDemo.concurrent.pool.threadPoolDemo;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;

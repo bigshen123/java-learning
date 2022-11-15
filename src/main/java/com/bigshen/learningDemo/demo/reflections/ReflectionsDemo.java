@@ -1,6 +1,7 @@
 package com.bigshen.learningDemo.demo.reflections;
 
 import com.bigshen.learningDemo.common.service.RedisService;
+import org.junit.Test;
 import org.reflections.Reflections;
 
 import java.util.Set;
@@ -21,11 +22,32 @@ import java.util.Set;
  * 4）获取特定签名方法。
  */
 public class ReflectionsDemo {
-    public static void main(String[] args) {
-        Reflections reflections = new Reflections(ReflectionsDemo.class.getPackage().getName());
+
+
+    @Test
+    public void reflectionsDemo1() {
+        Class<?> reflectionsDemo = null;
+        try {
+            reflectionsDemo = Class.forName("com.bigshen.learningDemo.demo.reflections.ReflectionsDemo");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println(reflectionsDemo);
+        Class<ReflectionsDemo> reflectionsDemoClass = ReflectionsDemo.class;
+        System.out.println(reflectionsDemoClass);
+        ReflectionsDemo r = new ReflectionsDemo();
+        Class<? extends ReflectionsDemo> aClass = r.getClass();
+        System.out.println(aClass);
+    }
+
+    @Test
+    public void reflectionsDemo2() {
+        /*Reflections reflections = new Reflections(ReflectionsDemo.class.getPackage().getName());
         Set<Class<? extends RedisService>> subTypesOf = reflections.getSubTypesOf(RedisService.class);
         System.out.println(subTypesOf);
-        System.out.println(System.currentTimeMillis());
+        System.out.println(System.currentTimeMillis());*/
+
+
 
         /*// 初始化工具类
         Reflections reflections = new Reflections(new ConfigurationBuilder().forPackages(basePackages).addScanners(new SubTypesScanner()).addScanners(new FieldAnnotationsScanner()));
@@ -51,4 +73,5 @@ public class ReflectionsDemo {
 // 获取资源文件
         Set<String> properties = reflections.getResources(Pattern.compile(".*\\.properties"));*/
     }
+
 }
