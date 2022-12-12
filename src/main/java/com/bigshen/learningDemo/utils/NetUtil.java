@@ -135,7 +135,7 @@ public class NetUtil {
     }
 
     public static void main(String[] args) {
-        String user = urlMerge("http://10.0.210.152:60700/syncGwData", "User");
+        String user = urlMerge("http://10.0.210.152:60700/syncGwData", "User","123","bigshen");
         System.out.println(user);
     }
 

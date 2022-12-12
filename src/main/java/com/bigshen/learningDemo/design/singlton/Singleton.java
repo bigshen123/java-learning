@@ -1,5 +1,7 @@
 package com.bigshen.learningDemo.design.singlton;
 
+import java.time.Instant;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
@@ -36,8 +38,9 @@ public class Singleton {
     }
 
     public static void main(String[] args) {
-        Singleton instance1 = Singleton.getInstance();
-        Singleton instance2 = Singleton.getInstance();
-        System.out.println(instance1==instance2);
+        Instant now = Instant.now();
+        System.out.println(now);
+        Instant instant = now.minusSeconds(TimeUnit.SECONDS.toSeconds(10));
+        System.out.println(instant);
     }
 }

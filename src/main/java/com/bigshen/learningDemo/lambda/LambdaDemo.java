@@ -1,14 +1,17 @@
 package com.bigshen.learningDemo.lambda;
 
 
+import com.bigshen.learningDemo.common.exception.ApiException;
 import com.bigshen.learningDemo.concurrent.hashmap.User;
 import com.bigshen.learningDemo.utils.entity.OperateInfo;
 import com.bigshen.learningDemo.utils.entity.OrderInfo;
 import com.bigshen.learningDemo.utils.entity.OrderInfoResponse;
 import com.bigshen.learningDemo.utils.entity.Userinfo;
 import com.bigshen.learningDemo.utils.enums.OrderTypeEnum;
+import com.bigshen.learningDemo.utils.json.JacksonUtil;
 import org.apache.commons.compress.utils.Lists;
 import org.junit.Test;
+import org.springframework.http.HttpStatus;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -139,7 +142,7 @@ public class LambdaDemo {
         System.out.println(date1);
         System.out.println(date);
         dates.add(date);
-        if (dates.stream().anyMatch(i->i.after(new Date(i.getTime() + 180000)))){
+        if (dates.stream().anyMatch(i -> i.after(new Date(i.getTime() + 180000)))) {
             System.out.println("adsasad");
         }
     }
@@ -228,12 +231,24 @@ public class LambdaDemo {
     }
 
     @Test
-    public void reduceTest(){
-        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5 ,6 ,7 ,8 , 9, 10);
+    public void reduceTest() {
+        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
         // 按照下面的规则进行累加操作
         // reduce的规约，就是把前面定义的起始值，作为了x
         Integer num = list.stream().reduce(0, Integer::sum);
         System.out.println(num);
+    }
+
+    @Test
+    public void findFirstTest() {
+        List<User> users = new ArrayList<>();
+        User user1 = new User();
+        user1.setAge(9);
+        user1.setName("test");
+        users.add(user1);
+        User user = users.stream().findFirst().orElseThrow(() ->
+                new ApiException(HttpStatus.INTERNAL_SERVER_ERROR.value(), "资源变动配置json为空"));
+        System.out.println(user.getAge());
     }
 
 }
