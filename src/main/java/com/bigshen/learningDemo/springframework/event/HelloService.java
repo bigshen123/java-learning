@@ -6,5 +6,5 @@ package com.bigshen.learningDemo.springframework.event;
  */
 public interface HelloService {
 
-    public Object hello(Integer id);
+    Object hello(Integer id);
 }

@@ -28,9 +28,10 @@ public class LambdaDemo {
     public void forEachDemo() {
         ArrayList<String> list = new ArrayList<>(Arrays.asList("I", "LOVE", "YOU"));
         list.forEach(s -> {
-            if (s.length() > 3) {
-                System.out.println(s);
+            if ("I".equals(s)) {
+                return;
             }
+            System.out.println(s);
         });
         // 使用forEach()结合Lambda表达式迭代Map
         HashMap<Integer, String> map = new HashMap<>();
@@ -228,6 +229,33 @@ public class LambdaDemo {
         //anyMatch：检查是否至少匹配一个元素
         Boolean isAnyMatch = employees.stream().anyMatch((x) -> x.getAge() > 10);
         System.out.println("是否匹配至少一个元素:" + isAnyMatch);
+    }
+
+    @Test
+    public void matchTest2() {
+        // 定制排序
+        List<User> employees1 = Arrays.asList(
+                new User("张三", 18),
+                new User("李四", 38),
+                new User("王五", 50),
+                new User("赵六", 16),
+                new User("田七", 8)
+        );
+        List<User> employees2 = Arrays.asList(
+                new User("张三", 18),
+                new User("李四", 38),
+                new User("王五", 36),
+                new User("赵六", 16),
+                new User("田七", 8)
+        );
+        List<User> diffUser = new ArrayList<>();
+        employees1.stream().forEach(emp1->{
+            if (employees2.stream().noneMatch(emp2->emp2.getAge() == (emp1.getAge()))){
+                diffUser.add(emp1);
+            }
+        });
+        System.out.println(diffUser);
+
     }
 
     @Test
