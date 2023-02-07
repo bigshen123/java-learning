@@ -8,8 +8,12 @@ import org.slf4j.LoggerFactory;
 import java.util.concurrent.TimeUnit;
 
 /**
+ *
  * Function:订单服务
  *
+ * 比如下单的任务用一个线程池，获取数据的任务用另一个线程池。这样即使其中一个出现问题把线程池耗尽，那也不会影响其他的任务运行。
+ *
+ * hystrix 隔离 Hystrix 是一款开源的容错插件，具有依赖隔离、系统容错降级等功能。
  * @author crossoverJie
  *         Date: 2018/7/28 16:43
  * @since JDK 1.8
