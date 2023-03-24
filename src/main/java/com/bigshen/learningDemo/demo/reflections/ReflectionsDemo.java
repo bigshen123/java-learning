@@ -1,14 +1,16 @@
 package com.bigshen.learningDemo.demo.reflections;
 
-import com.bigshen.learningDemo.common.service.RedisService;
+import com.bigshen.learningDemo.common.annotation.Path;
 import org.junit.Test;
 import org.reflections.Reflections;
 
+import java.util.ArrayList;
 import java.util.Set;
 
 /**
  * @author byj
  * @date 2022/10/18
+ * Reflections库提供了一种方便的方式来扫描类路径，查找和使用注解、注释和特定类型的子类。这对于编写通用代码、插件化和扩展化应用程序等方案非常有用。
  * Reflections通过扫描classpath，索引元数据，并且允许在运行时查询这些元数据。
  * <p>
  * 使用Reflections可以很轻松的获取以下元数据信息：
@@ -42,6 +44,13 @@ public class ReflectionsDemo {
 
     @Test
     public void reflectionsDemo2() {
+        //创建Reflections对象，并指定要扫描的包路径：
+        Reflections reflections = new Reflections("com.bigshen.learningDemo");
+        // 查找指定类：
+        Set<Class<? extends ArrayList>> subTypesOf = reflections.getSubTypesOf(ArrayList.class);
+        // 查找注解：
+        Set<Class<?>> annotatedClasses = reflections.getTypesAnnotatedWith(Path.class);
+
         /*Reflections reflections = new Reflections(ReflectionsDemo.class.getPackage().getName());
         Set<Class<? extends RedisService>> subTypesOf = reflections.getSubTypesOf(RedisService.class);
         System.out.println(subTypesOf);

@@ -441,6 +441,13 @@
             <version>5.0.4</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.googlecode.aviator</groupId>
+            <artifactId>aviator</artifactId>
+            <version>5.2.4</version>
+        </dependency>
+
+
     </dependencies>
 
 </project>
