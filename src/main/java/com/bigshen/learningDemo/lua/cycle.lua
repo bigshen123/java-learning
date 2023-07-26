@@ -28,3 +28,26 @@ end
 local b=2
 func.myPrint(a)
 func.add(a,b)
+
+
+local index = 1;
+while (index <= 10) do
+    print('当前是第', index, '次循环');
+    index = index + 1;
+end
+
+-- for 要循环的值, 循环到的值 每次递增的值 do
+for i = 1, 10, 1 do
+    print(i)
+end
+
+-- for in 循环
+-- for in 循环可以使用 ipairs迭代器 或者 pairs 迭代器
+-- ipairs 只会迭代出key3这种只定义value而未定义key的数据
+-- pairs 会将所搜的数据都迭代出来
+-- 注意这里的key1="hello" key 是 key1, value 是 hello
+-- 而直接定义 key3 key 是 1(从1开始, 依次递增), value 是 key3
+local table = { key1='hello', key2='lua', 'key3', 'key4' };
+for key, value in ipairs(table) do
+    print(key, value);
+end
