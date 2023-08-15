@@ -5,9 +5,14 @@ package com.bigshen.learningDemo.design.strategy.driver;
  * @date 2022/2/9
  * 一档
  */
-public class GearStrategyOne implements GearStrategy {
+public class GearStrategyOne extends GearStrategyAbstract {
     @Override
     public void algorithm(String param) {
         System.out.println("当前档位" + param);
+    }
+
+    @Override
+    boolean support(StrategyType strategyType) {
+        return StrategyType.ONE.equals(strategyType);
     }
 }

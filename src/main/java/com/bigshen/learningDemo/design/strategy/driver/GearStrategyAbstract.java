@@ -9,4 +9,6 @@ public abstract class GearStrategyAbstract {
      定义策略执行方法
      */
     abstract void algorithm(String param);
+
+    abstract boolean support(StrategyType strategyType);
 }
