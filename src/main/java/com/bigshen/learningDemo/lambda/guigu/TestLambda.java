@@ -18,10 +18,10 @@ public class TestLambda {
 	
 	@Test
 	public void test1(){
-		Collections.sort(emps, (e1, e2) -> {
-			if(e1.getAge() == e2.getAge()){
-					return e1.getName().compareTo(e2.getName());
-			}else{
+		emps.sort((e1, e2) -> {
+			if (e1.getAge() == e2.getAge()) {
+				return e1.getName().compareTo(e2.getName());
+			} else {
 				return -Integer.compare(e1.getAge(), e2.getAge());
 			}
 		});
@@ -33,10 +33,10 @@ public class TestLambda {
 	
 	@Test
 	public void test2(){
-		String trimStr = strHandler("\t\t\t 我大尚硅谷威武   ", (str) -> str.trim());
+		String trimStr = strHandler("\t\t\t 我大尚硅谷威武   ", String::trim);
 		System.out.println(trimStr);
 		
-		String upper = strHandler("abcdef", (str) -> str.toUpperCase());
+		String upper = strHandler("abcdef", String::toUpperCase);
 		System.out.println(upper);
 		
 		String newStr = strHandler("我大尚硅谷威武", (str) -> str.substring(2, 5));
@@ -50,7 +50,7 @@ public class TestLambda {
 	
 	@Test
 	public void test3(){
-		op(100L, 200L, (x, y) -> x + y);
+		op(100L, 200L, Long::sum);
 		
 		op(100L, 200L, (x, y) -> x * y);
 	}

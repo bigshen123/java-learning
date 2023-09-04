@@ -1,34 +1,26 @@
 package com.bigshen.learningDemo.design.prototype.pagePrototype;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
  * 解答题
+ * @author BYJ
  */
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class AnswerQuestion {
 
-    private String name;  // 问题
-    private String key;   // 答案
-
-    public AnswerQuestion() {
-    }
-
-    public AnswerQuestion(String name, String key) {
-        this.name = name;
-        this.key = key;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getKey() {
-        return key;
-    }
-
-    public void setKey(String key) {
-        this.key = key;
-    }
+    /**
+     * 问题
+     */
+    private String name;
+    /**
+     * 答案
+     */
+    private String key;
 }

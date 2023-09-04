@@ -15,7 +15,7 @@ public final class ArrayQueue<T> {
     /**
      * 最终的数据存储
      */
-    private Object[] items;
+    private final Object[] items;
 
     /**
      * 队列满时的阻塞锁

@@ -8,8 +8,8 @@ import java.util.Objects;
  * @Date: 2019/12/16 21:32
  */
 public class User {
-    private String name;
-    private int age;
+    public String name;
+    public int age;
 
     public String getName() {
         return name;

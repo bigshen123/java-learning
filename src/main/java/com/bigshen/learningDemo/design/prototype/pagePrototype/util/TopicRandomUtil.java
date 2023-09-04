@@ -2,6 +2,9 @@ package com.bigshen.learningDemo.design.prototype.pagePrototype.util;
 
 import java.util.*;
 
+/**
+ * @author BYJ
+ */
 public class TopicRandomUtil {
 
     /**
