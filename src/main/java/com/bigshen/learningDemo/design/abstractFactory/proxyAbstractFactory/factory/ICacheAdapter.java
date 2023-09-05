@@ -5,6 +5,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * @author byj
  * @date 2022/10/9
+ * 适配接口
  */
 public interface ICacheAdapter {
 

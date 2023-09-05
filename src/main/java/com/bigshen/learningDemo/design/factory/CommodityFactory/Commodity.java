@@ -1,4 +1,4 @@
-package com.bigshen.learningDemo.design.factory.CommodityFactory.store;
+package com.bigshen.learningDemo.design.factory.CommodityFactory;
 
 import java.util.Map;
 

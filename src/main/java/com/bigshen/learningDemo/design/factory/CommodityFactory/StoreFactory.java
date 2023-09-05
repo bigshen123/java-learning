@@ -1,8 +1,8 @@
 package com.bigshen.learningDemo.design.factory.CommodityFactory;
 
-import com.bigshen.learningDemo.design.factory.CommodityFactory.store.Commodity;
-import com.bigshen.learningDemo.design.factory.CommodityFactory.store.impl.CardCommodityService;
-import com.bigshen.learningDemo.design.factory.CommodityFactory.store.impl.GoodsCommodityService;
+import com.bigshen.learningDemo.design.factory.CommodityFactory.impl.CardCommodityService;
+import com.bigshen.learningDemo.design.factory.CommodityFactory.impl.CouponCommodityService;
+import com.bigshen.learningDemo.design.factory.CommodityFactory.impl.GoodsCommodityService;
 
 /**
  * @author byj
@@ -15,7 +15,7 @@ public class StoreFactory {
             return null;
         }
         if (commodityType == 1) {
-            return new CardCommodityService();
+            return new CouponCommodityService();
         }
         if (2 == commodityType) {
             return new GoodsCommodityService();

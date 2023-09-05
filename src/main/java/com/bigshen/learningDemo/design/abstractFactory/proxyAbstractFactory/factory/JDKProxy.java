@@ -6,6 +6,7 @@ import java.lang.reflect.Proxy;
 /**
  * @author byj
  * @date 2022/10/9
+ * 抽象工厂
  */
 public class JDKProxy {
     public static <T> T getProxy(Class<T> interfaceClass, ICacheAdapter cacheAdapter) {

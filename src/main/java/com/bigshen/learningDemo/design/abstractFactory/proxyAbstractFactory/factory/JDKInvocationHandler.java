@@ -8,6 +8,7 @@ import java.lang.reflect.Method;
 /**
  * @author byj
  * @date 2022/10/9
+ * 工厂实现
  */
 public class JDKInvocationHandler implements InvocationHandler {
     private ICacheAdapter cacheAdapter;

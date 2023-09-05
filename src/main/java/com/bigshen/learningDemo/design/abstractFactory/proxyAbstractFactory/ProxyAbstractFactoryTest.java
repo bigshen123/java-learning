@@ -5,6 +5,8 @@ import com.bigshen.learningDemo.design.abstractFactory.proxyAbstractFactory.fact
 import com.bigshen.learningDemo.design.abstractFactory.proxyAbstractFactory.factory.impl.IIRCacheAdapter;
 import com.bigshen.learningDemo.design.abstractFactory.proxyAbstractFactory.impl.CacheServiceImpl;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * @author byj
  * @date 2022/10/9
@@ -19,8 +21,13 @@ public class ProxyAbstractFactoryTest {
     public static void main(String[] args) {
         CacheService proxyEGM = JDKProxy.getProxy(CacheServiceImpl.class, new EGMCacheAdapter());
         proxyEGM.set("user_name_01", "test1");
+        proxyEGM.set("test1","bigshen",10, TimeUnit.MILLISECONDS);
         String val01 = proxyEGM.get("user_name_01");
         System.out.println("测试结果：" + val01);
+        String test1 = proxyEGM.get("test1");
+        System.out.println("测试结果2：" + test1);
+
+        System.out.println();
 
         CacheService proxyIIR = JDKProxy.getProxy(CacheServiceImpl.class, new IIRCacheAdapter());
         proxyIIR.set("user_name_01", "test2");

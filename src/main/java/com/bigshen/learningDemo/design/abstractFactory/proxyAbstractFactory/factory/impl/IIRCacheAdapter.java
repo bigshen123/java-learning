@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * @author byj
  * @date 2022/10/9
+ * 集群B IIR集群
  */
 public class IIRCacheAdapter implements ICacheAdapter {
 
