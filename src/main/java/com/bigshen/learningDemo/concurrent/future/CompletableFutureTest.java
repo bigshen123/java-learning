@@ -29,20 +29,26 @@ public class CompletableFutureTest {
         CompletableFuture<String> f1 = CompletableFuture.supplyAsync(() -> {
             System.out.println(Thread.currentThread() + "-f1");
             return "f1";
-        });
+        },executor);
 
         CompletableFuture<String> f2 = CompletableFuture.supplyAsync(() -> {
             System.out.println(Thread.currentThread() + "-f2");
             return "f2";
-        });
+        },executor);
 
         CompletableFuture<String> f3 = CompletableFuture.supplyAsync(() -> {
             System.out.println(Thread.currentThread() + "-f3");
+            try {
+                TimeUnit.SECONDS.sleep(5);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             return "f3";
-        });
+        },executor);
 
-        //thenApply阻塞主线程 使用 thenApplyAsync 方法 不阻塞主线程
-        CompletableFuture.allOf(f1, f2, f3).thenApplyAsync((Integer) -> {
+        CompletableFuture<Void> allOf  = CompletableFuture.allOf(f1, f2, f3);
+        allOf.thenApplyAsync(v->{
+            System.out.print("begin......");
             try {
                 System.out.println(Thread.currentThread() + f1.get());
                 System.out.println(Thread.currentThread() + f2.get());
@@ -51,7 +57,7 @@ public class CompletableFutureTest {
                 e.printStackTrace();
             }
             return 1;
-        });
+        }).join();
         System.out.println(Thread.currentThread() + " end");
     }
 
@@ -62,6 +68,11 @@ public class CompletableFutureTest {
     public void thenCombineAsyncTest() {
         CompletableFuture<String> f1 = CompletableFuture.supplyAsync(() -> {
             System.out.println(Thread.currentThread() + "-f1");
+            try {
+                TimeUnit.SECONDS.sleep(3);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             return "f1";
         });
         CompletableFuture<String> f2 = f1.thenApplyAsync((v) -> {
@@ -104,6 +115,11 @@ public class CompletableFutureTest {
                     System.out.println("当前线程" + Thread.currentThread().getId());
                     int i = 10 / 2;
                     System.out.println("运行结果" + i);
+                    try {
+                        TimeUnit.SECONDS.sleep(5);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
                     return i;
                 }, executor).whenComplete((res, exception) -> {
                     //虽然能得到异常信息，但是无法修改返回数据
@@ -271,6 +287,11 @@ public class CompletableFutureTest {
         });
         CompletableFuture<Integer> future3 = CompletableFuture.supplyAsync(() -> {
             System.out.println("任务三开始");
+            try {
+                TimeUnit.SECONDS.sleep(3);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             return 3;
         }, executor);
         CompletableFuture<Void> allOf = CompletableFuture.allOf(future1, future2, future3);
@@ -279,6 +300,7 @@ public class CompletableFutureTest {
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
+        System.out.println("end.......");
 
     }
 
