@@ -1,4 +1,4 @@
-package com.bigshen.learningDemo.demo.guavaCache;
+package com.bigshen.learningDemo.demo.cache.guavaCache;
 
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
@@ -28,11 +28,11 @@ public class GuavaCacheDemo {
                 // 设置缓存移除通知
                 .removalListener((RemovalListener<Integer, String>) notification ->
                         System.out.println(notification.getKey() + " was removed,cause is "
-                        + notification.getCause())).build(new CacheLoader<Integer, String>() {
+                                + notification.getCause())).build(new CacheLoader<Integer, String>() {
 
                     // 在缓存不存在时，通过CacheLoader自动加载缓存
                     @Override
-                    public String load(Integer key)  {
+                    public String load(Integer key) {
                         System.out.println("load data:" + key);
                         return key + "对应的 value";
                     }

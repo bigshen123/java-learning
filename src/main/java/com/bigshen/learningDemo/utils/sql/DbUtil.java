@@ -4,7 +4,6 @@ import org.hibernate.query.internal.NativeQueryImpl;
 import org.hibernate.transform.Transformers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
@@ -391,7 +390,6 @@ public class DbUtil {
      * @param
      * @return
      */
-    @Modifying
 	@Transactional(rollbackFor=Throwable.class)
     public void executeUpdate(String... sqls) {
     	for (String sql : sqls) {
