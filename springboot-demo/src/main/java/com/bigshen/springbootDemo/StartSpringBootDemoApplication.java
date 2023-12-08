@@ -1,4 +1,4 @@
-package com.bigshen.learningDemo;
+package com.bigshen.springbootDemo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,8 +9,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Description
  */
 @SpringBootApplication
-public class StartLeanDemoApplication {
+public class StartSpringBootDemoApplication {
     public static void main(String[] args) {
-        SpringApplication.run(StartLeanDemoApplication .class,args);
+        SpringApplication.run(StartSpringBootDemoApplication.class, args);
     }
 }
