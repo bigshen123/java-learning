@@ -1,6 +1,5 @@
 package com.bigshen.learningDemo.utils;
 
-import com.bigshen.learningDemo.demo.io.User;
 import com.bigshen.learningDemo.utils.json.JacksonUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -8,10 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
-import java.util.Objects;
 
 /**
  * @author byj
