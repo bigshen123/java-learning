@@ -1,9 +1,11 @@
 package com.bigshen.learningDemo.common.util;
 
+import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -185,8 +187,8 @@ public class HumpUtil {
     }
 
     public static void main(String[] args) {
-        String test = "UserGroup";
-        String s = HumpUtil.humpToUnderline(StrUtil.lowerFirst(test));
-        System.out.println(s);
+//        String test = "UserGroup";
+//        String s = HumpUtil.humpToUnderline(StrUtil.lowerFirst(test));
+//        System.out.println(s);
     }
 }

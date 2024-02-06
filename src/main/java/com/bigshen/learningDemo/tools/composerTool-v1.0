@@ -1,0 +1,66 @@
+#!/bin/bash
+
+# 回到项目目录
+cd ${CI_PROJECT_DIR}
+
+# 获取版本号和包名
+php_get_script_prefix=$(
+    cat <<EOF
+    \$content = file_get_contents('composer.json');
+    \$content = json_decode(\$content,true);
+
+EOF
+)
+
+php_get_version_script=$(
+    cat <<EOF
+     ${php_get_script_prefix}
+     echo \$content["version"] ?? "";
+
+EOF
+)
+
+php_get_name_script=$(
+    cat <<EOF
+    ${php_get_script_prefix}
+    echo \$content["name"] ?? "";
+
+EOF
+)
+version=$(php -r "${php_get_version_script}")
+if [ "${version}" == "" ]; then
+    echo "未找到版本号"
+    exit 1
+fi
+packageName=$(php -r "${php_get_name_script}")
+if [ "${packageName}" == "" ]; then
+    echo "未找到包名"
+    exit 1
+fi
+echo "版本号: ${version}，包名：${packageName}"
+
+# 删除忽略的目录
+rm -rf vendor .git .gitignore .gitattributes .gitmodules composer.lock
+rm -rf "$@"
+
+# 打包压缩
+fileName="${CI_PROJECT_TITLE}-${CI_COMMIT_SHA}"
+composer archive --format=zip --file="${fileName}"
+
+# 获取分支名或者tag名
+refName=${CI_COMMIT_REF_NAME}
+if [ "${distribution_channel}" == "test" ]; then
+    # 测试时，会推一个`{版本号}`-dev的包，如当前版本为`1.0.0`则会推一个 `1.0.0-dev`的包
+    curl -v --user "deployment:deployment123" --upload-file "${fileName}.zip" "http://nexus3.koal.com:8081/repository/composer-snapshots/packages/upload/${packageName}/${version}-dev"
+    # 再推一个当前分支的包
+    pushVersion="${refName}"
+    if [ "${refName}" == "main" ]; then
+        # 如果是main则推分支为dev-main版本
+        pushVersion="dev-${pushVersion}"
+    fi
+    curl -v --user 'deployment:deployment123' --upload-file "${fileName}.zip" "http://nexus3.koal.com:8081/repository/composer-snapshots/packages/upload/${packageName}/${pushVersion}"
+else
+    # 推送release包
+    curl -v --user 'deployment:deployment123' --upload-file "${fileName}.zip" "http://nexus3.koal.com:8081/repository/composer-snapshots/packages/upload/${packageName}/${refName}"
+fi
+

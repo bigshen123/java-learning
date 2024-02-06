@@ -24,25 +24,12 @@ public class CaffeineDemo {
 
        // loading();
 
-        asyncLoading();
+        //asyncLoading();
 
         //  Caffeine提供三类驱逐eviction策略：基于大小（size-based），基于时间（time-based）和基于引用（reference-based）。
-       // sizeBasedEviction();
+
 
     }
-
-//    private static void sizeBasedEviction() {
-//        Caffeine.newBuilder().maximumSize(10000).build(key -> createExpensiveGraph(key));
-//
-//    }
-
-//    private Object createExpensiveGraph(String key) {
-//        System.out.println("缓存不存在或过期，调用了createExpensiveGraph方法获取缓存key的值");
-//        if (key.equals("name")) {
-//            throw new RuntimeException("调用了该方法获取缓存key的值的时候出现异常");
-//        }
-//        return personService.findOne1();
-//    }
 
     private static void asyncLoading() throws ExecutionException, InterruptedException {
         AsyncLoadingCache<String, Integer> cache = Caffeine.newBuilder().buildAsync(name -> {
@@ -72,10 +59,11 @@ public class CaffeineDemo {
     private static void demo() {
         Cache<String, String> cache = Caffeine.newBuilder()
                 //5秒没有读写自动删除
-                .expireAfterAccess(5, TimeUnit.SECONDS)
+                .expireAfterAccess(3, TimeUnit.SECONDS)
                 //最大容量1024个，超过会自动清理空间
                 .maximumSize(1024)
                 .removalListener(((key, value, cause) -> {
+                    System.out.println("回收键："+key+"值："+value+"原因："+cause);
                     //清理通知 key,value ==> 键值对   cause ==> 清理原因
                 }))
                 .build();
@@ -83,12 +71,19 @@ public class CaffeineDemo {
         //添加值
         cache.put("张三", "浙江");
         //获取值
-        String cacheData = cache.getIfPresent("张三");
-        System.out.println(cacheData);
+        System.out.println(cache.getIfPresent("张三"));
+
+        try {
+            TimeUnit.SECONDS.sleep(6);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println(cache.getIfPresent("张三"));
+
         //remove
-        cache.invalidate("张三");
-        String cacheData2 = cache.getIfPresent("张三");
-        System.out.println(cacheData2);
+//        cache.invalidate("张三");
+//        String cacheData2 = cache.getIfPresent("张三");
+//        System.out.println(cacheData2);
     }
 
     private static void loading() {

@@ -1,0 +1,24 @@
+name: ${NAME}
+arch: ${ARCH}
+platform: linux
+version: ${VERSION}
+section: default
+priority: extra
+maintainer: kl
+description: "${DESCRIPTION}"
+vendor: "vendor"
+contents:
+  - src: config/rsyslog.conf
+    dst: /etc/rsyslog.conf
+  - src: config/cron.d/cron_kl
+    dst: /etc/cron.d/cron_kl
+  - src: config/logrotate.d
+    dst: /etc/logrotate.d
+  - src: config/rsyslog-rotate
+    dst: /usr/lib/rsyslog/rsyslog-rotate
+  - src: runit
+    dst: /apps/rsyslog-service
+  - src: check.sh
+    dst: /apps/rsyslog-service/check.sh
+  - src: version.properties
+    dst: /apps/rsyslog-service/version.properties

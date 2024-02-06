@@ -1,0 +1,53 @@
+#!/bin/bash
+
+set -e
+
+ARCH="$1"
+PROJECT_PROPERTIES_PATH="$2"
+PR_ACCESS_TOKEN="$3"
+COMMIT_ID="$4"
+
+echo "PROJECT_PROPERTIES_PATH=${PROJECT_PROPERTIES_PATH}"
+
+cd $(dirname ${PROJECT_PROPERTIES_PATH})
+source $(basename ${PROJECT_PROPERTIES_PATH})
+cd -
+
+# 脚本文件中
+script_dir=$(dirname $0)
+cd ${script_dir}
+
+echo -e "VERSION=${VERSION}\nBUILD_NUMBER=${COMMIT_ID}\n" > version.properties
+
+# 模板生成nfpm配置
+rm -f nfpm.yaml
+cp nfpm.yaml.template nfpm.yaml
+sed -i 's/\${NAME}/'${NAME}'/' nfpm.yaml
+sed -i 's/\${ARCH}/'${ARCH}'/' nfpm.yaml
+sed -i 's/\${VERSION}/'${VERSION}'/' nfpm.yaml
+sed -i 's/\${DESCRIPTION}/'"${DESCRIPTION}"'/' nfpm.yaml
+
+# 生成deb包
+rm -rf deb_dist
+mkdir -p deb_dist
+
+nfpm_path="./nfpm"
+
+if [ ! -f "nfpm" ]; then
+  curl -O "http://debian.koal.com/upload/gcrp/nfpm-releases/${ARCH}/nfpm"
+  chmod +x nfpm
+fi
+
+${nfpm_path} package -p deb -t ./deb_dist/
+
+# 获取deb包路径和名称 文件名不能还有特殊字符~，有则转换为-
+file_name_path=$(find deb_dist/*deb)
+file_name_new_path=${file_name_path//\~/-}
+if [ "${file_name_path}" != "${file_name_new_path}" ]; then
+  mv ${file_name_path} ${file_name_new_path}
+fi
+file_name_path=${file_name_new_path}
+file_name=$(basename ${file_name_path})
+
+
+curl -v --header "PRIVATE-TOKEN: ${PR_ACCESS_TOKEN}" --upload-file ${file_name_path}  "http://git.koal.com/api/v4/projects/8939/packages/generic/${NAME}/${VERSION}/${file_name}"

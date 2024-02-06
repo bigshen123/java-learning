@@ -1,17 +1,12 @@
-package com.bigshen.learningDemo.demo.md5;
+package com.bigshen.learningDemo.demo.comparator;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
-import java.io.*;
-import java.math.BigInteger;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
-import java.security.DigestInputStream;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 import java.util.concurrent.ConcurrentHashMap;
@@ -24,12 +19,16 @@ import java.util.concurrent.ConcurrentHashMap;
 public class CalculateMD5 {
 
     private static final ConcurrentHashMap<String, Long> TENANT_MEM_POINTER_MAP = new ConcurrentHashMap<>();
+
     public static void main(String[] args) {
         // ClassPathResource classPathResource = new ClassPathResource("asset/SUBCA01.crl");
-//        File file = new File("D:\\IdeaProjects\\learnning-demo\\src\\main\\resources\\asset\\SUBCA01.crl");
+        File file = new File("D:\\NSAG\\crl\\SUBCA01.crl");
 //
 //        // DigestUtils 加载整个文件计算md5
-//        String md51 = calculateMD5(file);
+        long start = System.currentTimeMillis();
+        String md51 = calculateMD5(file);
+        long end = System.currentTimeMillis();
+        System.err.println("cost:" + (end - start));
 //        System.out.println("计算md5：" + md51);
 //        // 处理大文件时 流式计算md5 减少内存占用
 //        String md52 = streamCalculateMD5(file.toPath());
@@ -47,9 +46,8 @@ public class CalculateMD5 {
 //        System.out.println(serialNumber);
 
 
-
-        test();
-       // test2();
+        // test();
+        // test2();
     }
 
     private static void test2() {
@@ -72,13 +70,13 @@ public class CalculateMD5 {
         }
     }
 
-//    private static String calculateMD5(File file) {
-//        try (InputStream tempCrlIns = Files.newInputStream(file.toPath())) {
-//            return DigestUtils.md5Hex(tempCrlIns);
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
+    private static String calculateMD5(File file) {
+        try (InputStream tempCrlIns = Files.newInputStream(file.toPath())) {
+            return DigestUtils.md5Hex(tempCrlIns);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 //    /**
 //     * 当处理大文件时，将整个文件读入内存以计算其 MD5 值可能会造成内存压力

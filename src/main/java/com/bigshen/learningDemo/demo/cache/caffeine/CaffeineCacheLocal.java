@@ -16,12 +16,12 @@ import java.util.concurrent.TimeUnit;
  */
 public class CaffeineCacheLocal {
 
-    private static CaffeineCacheLocal cache;
+    private static final CaffeineCacheLocal CACHE;
 
     static {
         // 50年
         long defaultWriteInMillis = 1576800000000L;
-        cache = CaffeineCacheLocal
+        CACHE = CaffeineCacheLocal
                 .newBuilder()
                 .maximumSize(10000)
                 .build();
@@ -29,7 +29,7 @@ public class CaffeineCacheLocal {
     }
 
     private static CaffeineCacheLocal getCache(){
-        return cache;
+        return CACHE;
     }
 
     private final Cache<String, Object> localCache;

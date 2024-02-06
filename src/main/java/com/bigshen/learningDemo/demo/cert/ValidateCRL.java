@@ -47,6 +47,9 @@ public class ValidateCRL {
         FileInputStream in = new FileInputStream(crlFilePath);
         CertificateFactory cf = CertificateFactory.getInstance("X.509");
         X509CRL crl = (X509CRL) cf.generateCRL(in);
+        crl.getSignature();
+        String name = crl.getIssuerX500Principal().getName();
+        String name1 = crl.getIssuerDN().getName();
         in.close();
         return crl;
     }
