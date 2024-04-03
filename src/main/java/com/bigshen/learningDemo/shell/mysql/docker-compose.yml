@@ -1,0 +1,78 @@
+version: '3'
+
+x-mysql_env: &mysql_env_common_config
+  TZ: Asia/Shanghai
+  character-set-server: utf8mb4
+  collation-server: utf8mb4_general_ci
+  ADMIN_USER: root   #当前容器用于拥有创建账号功能的数据库账号
+  ADMIN_PASSWORD: 123456
+
+services:
+  mysqlMaster:
+    image: mysql:8.0.34
+    container_name: mysqlMaster
+    ports:
+      - "52206:3306"
+    environment:
+      <<: *mysql_env_common_config
+      MYSQL_ROOT_PASSWORD: 123456
+      MASTER_SYNC_USER: sync_admin  #设置脚本中定义的用于同步的账号
+      MASTER_SYNC_PASSWORD: 123456
+      ALLOW_HOST: '%' #允许同步账号的host地址
+    volumes:
+      - /opt/mysqlCluster/mysqlMaster/data:/var/lib/mysql:rw
+      - /opt/mysqlCluster/mysqlMaster/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d:ro
+    command:
+      --server-id=1
+      --log_bin-index=master-bin.index
+      --max_connections=500
+      --max_connect_errors=100
+      --expire-logs-days=7
+      --read_only=OFF
+      --super_read_only=OFF
+      --innodb_flush_log_at_trx_commit=1
+      --authentication_policy=mysql_native_password
+      --log-bin=mysql-bin
+      --binlog-ignore-db=information_schema
+      --binlog-ignore-db=performance_schema
+      --binlog-ignore-db=sys
+      --binlog-ignore-db=mysql
+      --default_storage_engine=InnoDB
+      --skip-name-resolve
+      --binlog_format=ROW
+      --sync_binlog=1
+
+  mysqlSlave:
+    image: mysql:8.0.34
+    container_name: mysqlSlave
+    ports:
+      - "52207:3306"
+    environment:
+      <<: *mysql_env_common_config
+      MYSQL_ROOT_PASSWORD: 123456
+      SLAVE_SYNC_USER: sync_admin #用于同步的账号，由master创建
+      SLAVE_SYNC_PASSWORD: 123456
+      MASTER_HOST: mysqlMaster
+      host_cache_size: 0
+    volumes:
+      - /opt/mysqlCluster/mysqlSlave/data:/var/lib/mysql:rw
+      - /opt/mysqlCluster/mysqlSlave/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d:ro
+    command:
+      --relay-log-index=slave-relay-bin.index
+      --relay-log=relay-log
+      --server-id=2
+      --read_only=ON
+      --super_read_only=OFF
+      --relay_log_purge=0
+      --log-slave-updates=1
+      --innodb_flush_log_at_trx_commit=1
+      --authentication_policy=mysql_native_password
+      --log-bin=mysql-bin
+      --binlog-ignore-db=information_schema
+      --binlog-ignore-db=performance_schema
+      --binlog-ignore-db=sys
+      --binlog-ignore-db=mysql
+      --default_storage_engine=InnoDB
+      --skip-name-resolve
+      --binlog_format=ROW
+      --sync_binlog=1

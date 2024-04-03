@@ -16,6 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+/**
+ * 对称加解密 AES算法
+ */
 public class AES256Helper {
 
 	  private static final Log log = LogFactory.getLog(AES256Helper.class);
@@ -36,17 +39,17 @@ public class AES256Helper {
 
 	public static byte[] keyByte = null;
 	
-	static{
-		try {
-			keyByte = AES256Helper.generateKeyByte();
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		} catch (InvalidKeySpecException e) {
-			e.printStackTrace();
-		}
-	}
+//	static{
+//		try {
+//			keyByte = AES256Helper.generateKeyByte();
+//		} catch (NoSuchAlgorithmException e) {
+//			e.printStackTrace();
+//		} catch (UnsupportedEncodingException e) {
+//			e.printStackTrace();
+//		} catch (InvalidKeySpecException e) {
+//			e.printStackTrace();
+//		}
+//	}
 
 	/**
 	 * 加密
@@ -80,7 +83,7 @@ public class AES256Helper {
 
 		Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
 		Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM, "BC");
-		SecretKeySpec skeySpec = new SecretKeySpec(keyByte, "AES");
+		SecretKeySpec skeySpec = new SecretKeySpec(sKey.getBytes(), "AES");
 		IvParameterSpec iv = new IvParameterSpec(ivParameter.getBytes());
 		cipher.init(Cipher.ENCRYPT_MODE, skeySpec, iv);
 		return cipher.doFinal(data);
@@ -118,7 +121,7 @@ public class AES256Helper {
 
 		Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
 		Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM, "BC");
-		SecretKeySpec skeySpec = new SecretKeySpec(keyByte, "AES");
+		SecretKeySpec skeySpec = new SecretKeySpec(sKey.getBytes(), "AES");
 		IvParameterSpec iv = new IvParameterSpec(ivParameter.getBytes());
 		cipher.init(Cipher.DECRYPT_MODE, skeySpec, iv);
 		return cipher.doFinal(data);
@@ -247,10 +250,6 @@ public class AES256Helper {
 			// 294f5b4e425d362c59467d2b656639306a7b2b6f4553623964383e5a2765394d
 			char[] testChar = Base64Helper.encode(data);
 			System.out.println(Base64Helper.encode(data));
-			// for (int i = 0; i < data.length; i++) {
-			// System.out.printf("%x", data[i]);
-			// }
-			// System.out.print("\n");
 
 			String test = String.valueOf(testChar);
 			// String test = "qLu6l0ZdQruoVX62LhHqvA==";

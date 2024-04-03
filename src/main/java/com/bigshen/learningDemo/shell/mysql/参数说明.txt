@@ -1,0 +1,64 @@
+
+      主机
+-----------------------------------------------------------
+      ## 设置 MySQL 服务器的唯一标识符。在主从复制中，每个 MySQL 服务器都必须有唯一的 server-id
+      --server-id=1
+      ## 指定二进制日志索引文件的名称
+      --log_bin-index=master-bin.index
+      ## 设置 MySQL 服务器允许的最大连接数
+      --max_connections=500
+      ## 设置在连接错误超过指定次数后，MySQL 服务器将禁止该主机连接的最大错误次数
+      --max_connect_errors=100
+      ## 设置二进制日志文件过期的天数。过期后的二进制日志文件将被自动删除
+      --expire-logs-days=7
+      ## 设置是否允许对数据库进行读写操作。这里设置为 OFF 表示允许读写操作
+      --read_only=OFF
+      ## 设置是否允许超级用户进行更改。这里设置为 OFF 表示允许超级用户进行更改
+      --super_read_only=OFF
+      ## 设置 InnoDB 存储引擎的日志刷新策略。这里设置为 1 表示每次事务提交时都会刷新日志
+      --innodb_flush_log_at_trx_commit=1
+      ## 设置认证策略为 MySQL 原生密码认证
+      --authentication_policy=mysql_native_password
+      ## 启用二进制日志，并设置二进制日志文件的基本名称
+      --log-bin=mysql-bin
+      ## 忽略这些数据库中的更改，不记录到二进制日志中（根据业务只同步需要的业务数据库）
+      --binlog-ignore-db=information_schema
+      --binlog-ignore-db=performance_schema
+      --binlog-ignore-db=sys
+      --binlog-ignore-db=mysql
+      ## 设置默认的存储引擎为 InnoDB
+      --default_storage_engine=InnoDB
+      ## 禁用 MySQL 的 DNS 解析功能，加快连接速度
+      --skip-name-resolve
+      ## 设置二进制日志的格式为行格式，以记录数据的更改
+      --binlog_format=ROW
+      ## 设置每次事务提交时，二进制日志都会被同步写入磁盘
+      --sync_binlog=1
+
+
+
+        备机
+-------------------------------------------------------------
+
+            ## 指定中继日志的索引文件名
+            --relay-log-index=slave-relay-bin.index
+            ## 指定中继日志的文件名
+            --relay-log=relay-log
+            --server-id=2
+            --read_only=ON
+            --super_read_only=OFF
+            ## 控制从服务器是否自动清理中继日志
+            --relay_log_purge=0
+            ## 让从服务器记录它的复制操作到自己的二进制日志中
+            --log-slave-updates=1
+            --innodb_flush_log_at_trx_commit=1
+            --authentication_policy=mysql_native_password
+            --log-bin=mysql-bin
+            --binlog-ignore-db=information_schema
+            --binlog-ignore-db=performance_schema
+            --binlog-ignore-db=sys
+            --binlog-ignore-db=mysql
+            --default_storage_engine=InnoDB
+            --skip-name-resolve
+            --binlog_format=ROW
+            --sync_binlog=1

@@ -1,0 +1,40 @@
+#!/bin/bash
+
+init_param() {
+    #定义用于同步的用户名
+    SHELL_MASTER_SYNC_USER=${MASTER_SYNC_USER:-sync_admin}
+    #定义用于同步的用户密码
+    SHELL_MASTER_SYNC_PASSWORD=${MASTER_SYNC_PASSWORD:-123456}
+    #定义用于登录mysql的用户名
+    SHELL_ADMIN_USER=${ADMIN_USER:-root}
+    #定义用于登录mysql的用户密码
+    SHELL_ADMIN_PASSWORD=${ADMIN_PASSWORD:-123456}
+    #定义运行登录的host地址
+    SHELL_ALLOW_HOST=${ALLOW_HOST:-%}
+}
+
+create_sync_user() {
+    #定义创建账号的sql语句
+    CREATE_USER_SQL="CREATE USER '$SHELL_MASTER_SYNC_USER'@'$SHELL_ALLOW_HOST' IDENTIFIED BY '$SHELL_MASTER_SYNC_PASSWORD';"
+    #定义赋予同步账号权限的sql,这里设置两个权限，REPLICATION SLAVE，属于从节点副本的权限，REPLICATION CLIENT是副本客户端的权限，可以执行show master status语句
+    GRANT_PRIVILEGES_SQL="GRANT REPLICATION SLAVE,REPLICATION CLIENT ON *.* TO '$SHELL_MASTER_SYNC_USER'@'$SHELL_ALLOW_HOST';"
+    #定义刷新权限的sql
+    FLUSH_PRIVILEGES_SQL="FLUSH PRIVILEGES;"
+    #执行sql
+    mysql -u"$SHELL_ADMIN_USER" -p"$SHELL_ADMIN_PASSWORD" -e "$CREATE_USER_SQL $GRANT_PRIVILEGES_SQL $FLUSH_PRIVILEGES_SQL"
+}
+
+#####################################
+#定义用于同步的用户名
+SHELL_MASTER_SYNC_USER=
+#定义用于同步的用户密码
+SHELL_MASTER_SYNC_PASSWORD=
+#定义用于登录mysql的用户名
+SHELL_ADMIN_USER=
+#定义用于登录mysql的用户密码
+SHELL_ADMIN_PASSWORD=
+#定义运行登录的host地址
+SHELL_ALLOW_HOST=
+
+init_param
+create_sync_user

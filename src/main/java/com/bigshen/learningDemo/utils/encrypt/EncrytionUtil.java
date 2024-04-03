@@ -4,6 +4,9 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * Java原生实现SHA256加密
+ */
 public class EncrytionUtil {
 
     /**
