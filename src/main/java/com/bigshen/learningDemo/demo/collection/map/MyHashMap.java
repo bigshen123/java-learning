@@ -1,4 +1,4 @@
-package com.bigshen.learningDemo.collection.map;
+package com.bigshen.learningDemo.demo.collection.map;
 
 import com.google.common.collect.Maps;
 import org.junit.Test;

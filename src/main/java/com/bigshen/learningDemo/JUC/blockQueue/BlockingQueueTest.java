@@ -1,4 +1,4 @@
-package com.bigshen.learningDemo.concurrent.blockQueue;
+package com.bigshen.learningDemo.JUC.blockQueue;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
