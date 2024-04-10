@@ -1,10 +1,8 @@
 package com.bigshen.learningDemo.demo.jvm.classLoader;
 
-import com.bigshen.learningDemo.concurrent.hashmap.User;
-import com.bigshen.learningDemo.utils.SnowflakeIdWorker;
+import com.bigshen.learningDemo.collection.map.hashmap.User;
 import org.junit.Test;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
@@ -34,7 +32,7 @@ public class ReflectionPerformance {
      */
     @Test
     public void test02() throws Exception {
-        Class<?> clazz = Class.forName("com.bigshen.learningDemo.concurrent.hashmap.User");
+        Class<?> clazz = Class.forName("com.bigshen.learningDemo.collection.map.hashmap.User");
         Method getName = clazz.getDeclaredMethod("getName", (Class<?>) null);
         User user = (User) clazz.newInstance();
         long startTime = System.currentTimeMillis();

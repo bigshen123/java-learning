@@ -1,0 +1,87 @@
+version: '3'
+
+x-redis_env: &redis_env_common_config
+  TZ: Asia/Shanghai 
+
+services:
+  redis_6381:
+    image: redis:6.0.20
+    container_name: redis_6381
+    ports:
+      - "46381:6381"
+      - "56381:16381"
+    environment:
+      <<: *redis_env_common_config
+    volumes:
+      - /Users/wulei/software/docker/redisCluster/redisCluster_Cluster/redis_6381/data:/data:rw
+      - /Users/wulei/software/docker/redisCluster/redisCluster_Cluster/redis_6381/conf:/etc/redis:ro
+    command: ["/usr/local/bin/redis-server", "/etc/redis/redis.conf"]
+
+  redis_6382:
+    image: redis:6.0.20
+    container_name: redis_6382
+    ports:
+      - "46382:6382"
+      - "56382:16382"
+    environment:
+      <<: *redis_env_common_config
+    volumes:
+      - /Users/wulei/software/docker/redisCluster/redisCluster_Cluster/redis_6382/data:/data:rw
+      - /Users/wulei/software/docker/redisCluster/redisCluster_Cluster/redis_6382/conf:/etc/redis:ro
+    command: ["/usr/local/bin/redis-server", "/etc/redis/redis.conf"]
+
+
+  redis_6383:
+    image: redis:6.0.20
+    container_name: redis_6383
+    ports:
+      - "46383:6383"
+      - "56383:16383"
+    environment:
+      <<: *redis_env_common_config
+    volumes:
+      - /Users/wulei/software/docker/redisCluster/redisCluster_Cluster/redis_6383/data:/data:rw
+      - /Users/wulei/software/docker/redisCluster/redisCluster_Cluster/redis_6383/conf:/etc/redis:ro
+    command: ["/usr/local/bin/redis-server", "/etc/redis/redis.conf"]
+
+  redis_6384:
+    image: redis:6.0.20
+    container_name: redis_6384
+    ports:
+      - "46384:6384"
+      - "56384:16384"
+    environment:
+      <<: *redis_env_common_config
+    volumes:
+      - /Users/wulei/software/docker/redisCluster/redisCluster_Cluster/redis_6384/data:/data:rw
+      - /Users/wulei/software/docker/redisCluster/redisCluster_Cluster/redis_6384/conf:/etc/redis:ro
+    command: ["/usr/local/bin/redis-server", "/etc/redis/redis.conf"]
+
+
+  redis_6385:
+    image: redis:6.0.20
+    container_name: redis_6385
+    ports:
+      - "46385:6385"
+      - "56385:16385"
+    environment:
+      <<: *redis_env_common_config
+    volumes:
+      - /Users/wulei/software/docker/redisCluster/redisCluster_Cluster/redis_6385/data:/data:rw
+      - /Users/wulei/software/docker/redisCluster/redisCluster_Cluster/redis_6385/conf:/etc/redis:ro
+    command: ["/usr/local/bin/redis-server", "/etc/redis/redis.conf"]
+    
+
+  redis_6386:
+    image: redis:6.0.20
+    container_name: redis_6386
+    ports:
+      - "46386:6386"
+      - "56386:16386"
+    environment:
+      <<: *redis_env_common_config
+    volumes:
+      - /Users/wulei/software/docker/redisCluster/redisCluster_Cluster/redis_6386/data:/data:rw
+      - /Users/wulei/software/docker/redisCluster/redisCluster_Cluster/redis_6386/conf:/etc/redis:ro
+    command: ["/usr/local/bin/redis-server", "/etc/redis/redis.conf"]
+
