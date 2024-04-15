@@ -13,8 +13,8 @@ services:
     environment:
       <<: *redis_env_common_config
     volumes:
-      - /Users/wulei/software/docker/redisCluster/redisCluster_Cluster/redis_6381/data:/data:rw
-      - /Users/wulei/software/docker/redisCluster/redisCluster_Cluster/redis_6381/conf:/etc/redis:ro
+      - /opt/redis/redisCluster/redisCluster_Cluster/redis_6381/data:/data:rw
+      - /opt/redis/redisCluster/redisCluster_Cluster/redis_6381/conf:/etc/redis:ro
     command: ["/usr/local/bin/redis-server", "/etc/redis/redis.conf"]
 
   redis_6382:
@@ -26,8 +26,8 @@ services:
     environment:
       <<: *redis_env_common_config
     volumes:
-      - /Users/wulei/software/docker/redisCluster/redisCluster_Cluster/redis_6382/data:/data:rw
-      - /Users/wulei/software/docker/redisCluster/redisCluster_Cluster/redis_6382/conf:/etc/redis:ro
+      - /opt/redis/redisCluster/redisCluster_Cluster/redis_6382/data:/data:rw
+      - /opt/redis/redisCluster/redisCluster_Cluster/redis_6382/conf:/etc/redis:ro
     command: ["/usr/local/bin/redis-server", "/etc/redis/redis.conf"]
 
 
@@ -40,8 +40,8 @@ services:
     environment:
       <<: *redis_env_common_config
     volumes:
-      - /Users/wulei/software/docker/redisCluster/redisCluster_Cluster/redis_6383/data:/data:rw
-      - /Users/wulei/software/docker/redisCluster/redisCluster_Cluster/redis_6383/conf:/etc/redis:ro
+      - /opt/redis/redisCluster/redisCluster_Cluster/redis_6383/data:/data:rw
+      - /opt/redis/redisCluster/redisCluster_Cluster/redis_6383/conf:/etc/redis:ro
     command: ["/usr/local/bin/redis-server", "/etc/redis/redis.conf"]
 
   redis_6384:
@@ -53,8 +53,8 @@ services:
     environment:
       <<: *redis_env_common_config
     volumes:
-      - /Users/wulei/software/docker/redisCluster/redisCluster_Cluster/redis_6384/data:/data:rw
-      - /Users/wulei/software/docker/redisCluster/redisCluster_Cluster/redis_6384/conf:/etc/redis:ro
+      - /opt/redis/redisCluster/redisCluster_Cluster/redis_6384/data:/data:rw
+      - /opt/redis/redisCluster/redisCluster_Cluster/redis_6384/conf:/etc/redis:ro
     command: ["/usr/local/bin/redis-server", "/etc/redis/redis.conf"]
 
 
@@ -67,8 +67,8 @@ services:
     environment:
       <<: *redis_env_common_config
     volumes:
-      - /Users/wulei/software/docker/redisCluster/redisCluster_Cluster/redis_6385/data:/data:rw
-      - /Users/wulei/software/docker/redisCluster/redisCluster_Cluster/redis_6385/conf:/etc/redis:ro
+      - /opt/redis/redisCluster/redisCluster_Cluster/redis_6385/data:/data:rw
+      - /opt/redis/redisCluster/redisCluster_Cluster/redis_6385/conf:/etc/redis:ro
     command: ["/usr/local/bin/redis-server", "/etc/redis/redis.conf"]
     
 
@@ -81,7 +81,7 @@ services:
     environment:
       <<: *redis_env_common_config
     volumes:
-      - /Users/wulei/software/docker/redisCluster/redisCluster_Cluster/redis_6386/data:/data:rw
-      - /Users/wulei/software/docker/redisCluster/redisCluster_Cluster/redis_6386/conf:/etc/redis:ro
+      - /opt/redis/redisCluster/redisCluster_Cluster/redis_6386/data:/data:rw
+      - /opt/redis/redisCluster/redisCluster_Cluster/redis_6386/conf:/etc/redis:ro
     command: ["/usr/local/bin/redis-server", "/etc/redis/redis.conf"]
 

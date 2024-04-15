@@ -10,7 +10,6 @@ get_rm_command() {
     fi
 }
 
-## 下面的 sed 命令 在 linux 下 需要 把 '' 删掉
 build_confs() {
     for PORT in "${REDIS_CLUSTER_PORTS[@]}"; do
         local current_redis_conf="redis_${PORT}"
@@ -18,10 +17,10 @@ build_confs() {
         mkdir -p "${current_redis_conf}/conf"
         local redis_conf_dir="${current_redis_conf}/conf/redis.conf"
         cp -f redis_template.conf "$redis_conf_dir"
-        sed -i '' "s/\${INSIDE_PORT}/${PORT}/g" "$redis_conf_dir"
-        sed -i '' "s/\${HOST_IP}/${HOST_IP}/g" "$redis_conf_dir"
-        sed -i '' "s/\${REQUIREPASS}/${REQUIREPASS}/g" "$redis_conf_dir"
-        sed -i '' "s/\${MASTERAUTH}/${MASTERAUTH}/g" "$redis_conf_dir"
+        sed -i  "s/\${INSIDE_PORT}/${PORT}/g" "$redis_conf_dir"
+        sed -i  "s/\${HOST_IP}/${HOST_IP}/g" "$redis_conf_dir"
+        sed -i  "s/\${REQUIREPASS}/${REQUIREPASS}/g" "$redis_conf_dir"
+        sed -i  "s/\${MASTERAUTH}/${MASTERAUTH}/g" "$redis_conf_dir"
     done
 
 }
@@ -36,7 +35,7 @@ main() {
 ## 替换成自己的机器 ip ，不要写成 127.0.0.1
 HOST_IP="10.0.200.135"
 ## 登陆密码
-REQUIREPASS=Wl123456
+REQUIREPASS=123456
 ## 主机密码
 MASTERAUTH=$REQUIREPASS
 ## 集群的内部端口，不要大于 9999
