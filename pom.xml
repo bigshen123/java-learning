@@ -487,6 +487,12 @@
             <version>0.10</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.jboss.netty</groupId>
+            <artifactId>netty</artifactId>
+            <version>3.2.5.Final</version>
+        </dependency>
+
 
 
 
