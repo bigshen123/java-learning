@@ -1,5 +1,7 @@
 package com.bigshen.learningDemo.javaSE.annotation;
 
+import com.bigshen.learningDemo.utils.ReflectionUtil;
+
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
@@ -12,9 +14,7 @@ public class Test {
     public static void main(String[] args) {
         try {
             // 获取所有methods
-            Method[] methods = TestMethodAnnotation.class.getClassLoader()
-                    .loadClass(("com.bigshen.learningDemo.demo.annotation.TestMethodAnnotation"))
-                    .getMethods();
+            Method[] methods = ReflectionUtil.getMethods("com.bigshen.learningDemo.javaSE.annotation.TestMethodAnnotation");
 
             // 遍历
             for (Method method : methods) {
@@ -38,7 +38,7 @@ public class Test {
                     }
                 }
             }
-        } catch (SecurityException | ClassNotFoundException e) {
+        } catch (SecurityException e) {
             e.printStackTrace();
         }
     }
