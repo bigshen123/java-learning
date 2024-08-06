@@ -1,7 +1,6 @@
 package com.bigshen.learningDemo.javaSE.cert;
 
 import com.alibaba.fastjson.JSONObject;
-import sun.misc.BASE64Encoder;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -65,10 +64,8 @@ public class Cert {
         System.out.println("【公钥格式】："+oCert.getPublicKey().getFormat());
 
         PublicKey publicKey = oCert.getPublicKey();
-        BASE64Encoder base64Encoder=new BASE64Encoder();
-        String publicKeyString = base64Encoder.encode(publicKey.getEncoded());
         System.out.println("-----------------公钥--------------------");
-        System.out.println(publicKeyString);
+        System.out.println(publicKey.toString());
         System.out.println("-----------------公钥--------------------");
     }
     /**

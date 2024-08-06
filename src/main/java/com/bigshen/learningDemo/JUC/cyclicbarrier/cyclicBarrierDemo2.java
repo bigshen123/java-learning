@@ -1,8 +1,8 @@
 package com.bigshen.learningDemo.JUC.cyclicbarrier;
 
-import java.util.concurrent.CyclicBarrier;
+import lombok.extern.slf4j.Slf4j;
 
-import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
+import java.util.concurrent.CyclicBarrier;
 
 /**
  * @Author BYJ
@@ -19,34 +19,35 @@ import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
  * 该工具可以实现 CountDownLatch 同样的功能，但是要更加灵活。甚至可以调用 reset() 方法重置 CyclicBarrier
  * (需要自行捕获 BrokenBarrierException 处理) 然后重新执行。
  */
+@Slf4j
 public class cyclicBarrierDemo2 {
     private static void cyclicBarrier() {
         CyclicBarrier cyclicBarrier = new CyclicBarrier(3) ;
 
         new Thread(() -> {
-            LOGGER.info("thread run");
+            log.info("thread run");
             try {
                 cyclicBarrier.await() ;
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
-            LOGGER.info("thread end do something");
+            log.info("thread end do something");
         }).start();
 
         new Thread(() -> {
-            LOGGER.info("thread run");
+            log.info("thread run");
             try {
                 cyclicBarrier.await() ;
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
-            LOGGER.info("thread end do something");
+            log.info("thread end do something");
         }).start();
 
         new Thread(() -> {
-            LOGGER.info("thread run");
+            log.info("thread run");
             try {
                 Thread.sleep(5000);
                 cyclicBarrier.await() ;
@@ -54,10 +55,10 @@ public class cyclicBarrierDemo2 {
                 e.printStackTrace();
             }
 
-            LOGGER.info("thread end do something");
+            log.info("thread end do something");
         }).start();
 
-        LOGGER.info("main thread");
+        log.info("main thread");
     }
 
     public static void main(String[] args) {

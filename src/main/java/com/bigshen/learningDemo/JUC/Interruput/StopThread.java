@@ -1,5 +1,7 @@
 package com.bigshen.learningDemo.JUC.Interruput;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.IOException;
 import java.io.PipedReader;
 import java.io.PipedWriter;
@@ -8,13 +10,12 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
-
 /**
  * @Author BYJ
  * @Date 2020/12/21 20:29
  * @Describe
  */
+@Slf4j
 public class StopThread implements Runnable{
 
     @Override
@@ -47,7 +48,7 @@ public class StopThread implements Runnable{
         BlockingQueue<Runnable> queue=new LinkedBlockingQueue<>(10);
         ThreadPoolExecutor poolExecutor=new ThreadPoolExecutor(5,5,1,TimeUnit.MICROSECONDS,queue);
         poolExecutor.execute(() -> {
-            LOGGER.info("running");
+            log.info("running");
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
@@ -55,7 +56,7 @@ public class StopThread implements Runnable{
             }
         });
         poolExecutor.execute(() -> {
-            LOGGER.info("runnging2");
+            log.info("runnging2");
             try {
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
@@ -64,9 +65,9 @@ public class StopThread implements Runnable{
         });
         poolExecutor.shutdown();
         while (!poolExecutor.awaitTermination(1,TimeUnit.MICROSECONDS)){
-            LOGGER.info("线程还在执行");
+            log.info("线程还在执行");
         }
-        LOGGER.info("main over!");
+        log.info("main over!");
     }
 
     public static void piped() throws IOException {

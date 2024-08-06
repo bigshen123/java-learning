@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * 2  * �ֲ�ʽ���ļ�ʵ�ִ���
+ * 分布式锁
  */
 public class DistributedLock {
 
@@ -27,36 +27,28 @@ public class DistributedLock {
     }
 
     /**
-     * 14      * ����
-     * 15      * @param lockName       ����key
-     * 16      * @param acquireTimeout ��ȡ��ʱʱ��
-     * 17      * @param timeout        ���ĳ�ʱʱ��
-     * 18      * @return ����ʶ
-     * 19
+     * 试在给定的时间内获取一个分布式锁
+     * @param lockName 锁的名称
+     * @param acquireTimeout 获取锁的超时时间，单位为毫秒。
+     * @param timeout 锁的有效期，单位为毫秒。
+     * @return
      */
     public String lockWithTimeout(String lockName, long acquireTimeout, long timeout) {
         Jedis conn = null;
         String retIdentifier = null;
         try {
-            // ��ȡ����
             conn = jedisPool.getResource();
-            // �������һ��value
             String identifier = UUID.randomUUID().toString();
-            // ��������keyֵ
             String lockKey = "lock:" + lockName;
-            // ��ʱʱ�䣬�����󳬹���ʱ�����Զ��ͷ���
             int lockExpire = (int) (timeout / 1000);
 
-            // ��ȡ���ĳ�ʱʱ�䣬�������ʱ���������ȡ��
             long end = System.currentTimeMillis() + acquireTimeout;
             while (System.currentTimeMillis() < end) {
                 if (conn.setnx(lockKey, identifier) == 1) {
                     conn.expire(lockKey, lockExpire);
-                    // ����valueֵ�������ͷ���ʱ��ȷ��
                     retIdentifier = identifier;
                     return retIdentifier;
                 }
-                // ����-1����keyû�����ó�ʱʱ�䣬Ϊkey����һ����ʱʱ��
                 if (conn.ttl(lockKey) == -1) {
                     conn.expire(lockKey, lockExpire);
                 }

@@ -2,15 +2,10 @@ package com.bigshen.learningDemo.javaSE.http;
 
 import com.bigshen.learningDemo.common.exception.ApiException;
 import org.springframework.http.HttpStatus;
-import sun.misc.BASE64Encoder;
-
-import javax.net.ssl.HttpsURLConnection;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.Base64;
 
 /**
