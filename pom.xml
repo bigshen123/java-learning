@@ -512,6 +512,13 @@
             <version>1.76</version>
         </dependency>
 
+        <!--xml util-->
+        <dependency>
+            <groupId>com.thoughtworks.xstream</groupId>
+            <artifactId>xstream</artifactId>
+            <version>1.4.18</version>
+        </dependency>
+
 
 
 
