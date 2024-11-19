@@ -1,4 +1,4 @@
-package com.bigshen.learningDemo.socket.udp;
+package com.bigshen.learningDemo.network.udp;
 
 import java.io.IOException;
 import java.net.DatagramPacket;

@@ -595,6 +595,44 @@
         <!--flink end .........................................................................................-->
 
 
+        <!--地理位置依赖-->
+        <dependency>
+            <groupId>com.maxmind.geoip2</groupId>
+            <artifactId>geoip2</artifactId>
+            <version>2.14.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.lionsoul</groupId>
+            <artifactId>ip2region</artifactId>
+            <version>2.6.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>kl.nbase</groupId>
+            <artifactId>common-base-emengine</artifactId>
+            <version>6.2.0-RC</version>
+        </dependency>
+
+        <dependency>
+            <groupId>kl.nbase</groupId>
+            <artifactId>common-base-klpkix</artifactId>
+            <version>6.2.0-RC</version>
+        </dependency>
+
+        <dependency>
+            <groupId>kl.nbase</groupId>
+            <artifactId>common-base-emengine-file-spi</artifactId>
+            <version>6.2.0-RC</version>
+        </dependency>
+
     </dependencies>
+
+
+    <repositories>
+        <repository>
+            <id>koal-repo</id>
+            <url>http://nexus3.koal.com:8081/repository/maven-public/</url>
+        </repository>
+    </repositories>
 
 </project>

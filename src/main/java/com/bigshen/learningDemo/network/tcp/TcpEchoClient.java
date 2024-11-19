@@ -1,4 +1,4 @@
-package com.bigshen.learningDemo.socket.tcp;
+package com.bigshen.learningDemo.network.tcp;
 
 import java.io.IOException;
 import java.io.InputStream;

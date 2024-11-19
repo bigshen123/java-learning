@@ -1,15 +1,22 @@
 package com.bigshen.learningDemo.utils;
 
+import lombok.extern.slf4j.Slf4j;
+
+import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
+import java.net.NetworkInterface;
 import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.regex.Pattern;
+
+import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
 
 /**
  * @author byj
  * @date 2024/8/22
  * @Description
  */
+@Slf4j
 public class IpUtils {
 
 
@@ -167,7 +174,64 @@ public class IpUtils {
         return Arrays.stream(domainArray)
                 .anyMatch(domain -> domain.contains("*"));
     }
-    public static void main(String[] args) {
+
+
+
+
+    /**
+     * 获取ip地址
+     * @param request request对象
+     * @return 返回对应IP地址
+     */
+    public static String getIpAddress(HttpServletRequest request){
+        String ipAddress = null;
+        try {
+            ipAddress = request.getHeader("X-Forwarded-For");
+            if (ipAddress != null && ipAddress.length() != 0 && !"unknown".equalsIgnoreCase(ipAddress)) {
+                // 多次反向代理后会有多个ip值，第一个ip才是真实ip
+                if (ipAddress.contains(",")) {
+                    ipAddress = ipAddress.split(",")[0];
+                }
+            }
+            if (ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
+                ipAddress = request.getHeader("Proxy-Client-IP");
+            }
+            if (ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
+                ipAddress = request.getHeader("WL-Proxy-Client-IP");
+            }
+            if (ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
+                ipAddress = request.getHeader("HTTP_CLIENT_IP");
+            }
+            if (ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
+                ipAddress = request.getRemoteAddr();
+            }
+        }catch (Exception e) {
+            log.error("IPUtils ERROR ",e);
+        }
+        return ipAddress;
+    }
+
+    /**
+     * 获取mac地址
+     */
+    public static String getMacAddress() throws Exception {
+        // 取mac地址
+        byte[] macAddressBytes = NetworkInterface.getByInetAddress(InetAddress.getLocalHost()).getHardwareAddress();
+        // 下面代码是把mac地址拼装成String
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < macAddressBytes.length; i++) {
+            if (i != 0) {
+                sb.append("-");
+            }
+            // mac[i] & 0xFF 是为了把byte转化为正整数
+            String s = Integer.toHexString(macAddressBytes[i] & 0xFF);
+            sb.append(s.length() == 1 ? 0 + s : s);
+        }
+        return sb.toString().trim().toUpperCase();
+    }
+
+
+    public static void main(String[] args) throws Exception {
 //        String ip = extractIp("https://127.0.0.1:8090");
 //        String ip2 = extractIp("https://127.0.0.1");
 //        String ip3 = extractIp("127.0.0.1");
@@ -199,9 +263,8 @@ public class IpUtils {
 //        System.out.println(domain2.matches(regex));
 //        System.out.println(domain3.matches(regex));
 
-        System.out.println(isValidCIDR("10.0.1.2"));
+        String macAddress = getMacAddress();
+        System.out.println(macAddress);
 
     }
-
-
 }
