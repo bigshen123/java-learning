@@ -9,15 +9,16 @@ import java.util.function.Function;
 public class Demo01 {
     public static void main(String[] args) {
         //
-//        Function<String,String> function = new Function<String,String>() {
-//            @Override
-//            public String apply(String str) {
-//                return str;
-//            }
-//        };
-
-        Function<String,String> function = str->{return str;};
-
+        Function<String,String> function = new Function<String,String>() {
+            @Override
+            public String apply(String str) {
+                return str;
+            }
+        };
         System.out.println(function.apply("asd"));
+
+        Function<String,String> function2 = str->{return str;};
+
+        System.out.println(function2.apply("asd"));
     }
 }
