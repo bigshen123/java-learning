@@ -1,15 +1,4 @@
-package com.bigshen.learningDemo.JUC.thirdCode.kuang.function;
-
-/**
- * @author byj
- * @date 2024/11/25
- * @Description
- */
-@FunctionalInterface
-interface Function<T, R> {
-
-    R apply(T t);
-}
+package com.bigshen.learningDemo.JUC.thirdCode.kuang.function.function;
 
 public class FunctionDemo2 {
     public static void main(String[] args) {

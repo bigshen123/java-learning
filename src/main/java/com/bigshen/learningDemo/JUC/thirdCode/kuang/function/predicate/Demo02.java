@@ -1,4 +1,4 @@
-package com.bigshen.learningDemo.JUC.thirdCode.kuang.function;
+package com.bigshen.learningDemo.JUC.thirdCode.kuang.function.predicate;
 
 import java.util.function.Predicate;
 

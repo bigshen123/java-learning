@@ -1,6 +1,8 @@
 package com.bigshen.learningDemo.common.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -9,10 +11,10 @@ import lombok.Setter;
  */
 @Setter
 @Getter
-public abstract class BaseResponse extends BaseJsonModel {
-
-    private static final long serialVersionUID = 943059230470133936L;
-
+@NoArgsConstructor
+@AllArgsConstructor
+public class BaseResponse<T> extends BaseJsonModel {
     private String id;
     private String apiVersion;
+    private T data;
 }
