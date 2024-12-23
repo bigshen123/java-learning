@@ -35,7 +35,7 @@ public class ReadByteComparator {
 
 //        boolean b = equalNewCrlContentWithOldCrlContent2(filePath1, filePath2);
 //        System.out.println(b);
-        calculateCrlPrivateKeyMd5Hex(filePath1);
+        calculateCrlPrivateKeyMd5Hex(filePath2);
 //        List<File> oldFiles = new ArrayList<>();
 //        oldFiles.add(filePath1);
 //        boolean b;
