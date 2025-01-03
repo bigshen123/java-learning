@@ -1,4 +1,4 @@
-//package com.bigshen.learningDemo.demo.micrometer;
+//package com.bigshen.learningDemo.javaSE.micrometer;
 //
 //import io.micrometer.core.instrument.Meter;
 //import io.micrometer.core.instrument.MeterRegistry;

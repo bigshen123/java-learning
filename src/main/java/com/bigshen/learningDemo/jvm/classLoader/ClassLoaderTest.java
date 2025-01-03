@@ -1,4 +1,4 @@
-package com.bigshen.learningDemo.demo.jvm.classLoader;
+package com.bigshen.learningDemo.jvm.classLoader;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -1,6 +1,6 @@
-package com.bigshen.learningDemo.demo.jvm.classLoader;
+package com.bigshen.learningDemo.jvm.classLoader;
 
-import com.bigshen.learningDemo.collection.map.hashmap.User;
+import com.bigshen.learningDemo.javaSE.collections.map.hashmap.User;
 import org.junit.Test;
 
 import java.lang.reflect.Method;
@@ -32,7 +32,7 @@ public class ReflectionPerformance {
      */
     @Test
     public void test02() throws Exception {
-        Class<?> clazz = Class.forName("com.bigshen.learningDemo.collection.map.hashmap.User");
+        Class<?> clazz = Class.forName("com.bigshen.learningDemo.javaSE.collections.map.hashmap.User");
         Method getName = clazz.getDeclaredMethod("getName", (Class<?>) null);
         User user = (User) clazz.newInstance();
         long startTime = System.currentTimeMillis();

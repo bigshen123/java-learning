@@ -1,6 +1,6 @@
 package com.bigshen.learningDemo.javaSE.reflections;
 
-import com.bigshen.learningDemo.collection.map.hashmap.User;
+import com.bigshen.learningDemo.javaSE.collections.map.hashmap.User;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
@@ -21,12 +21,12 @@ public class ReflectionsTest {
     public void classTest() throws Exception {
         // 获取Class对象的三种方式
         log.info("根据类名:  \t" + User.class);
-        log.info("根据全限定类名:\t" + Class.forName("com.bigshen.learningDemo.collection.map.hashmap.User"));
+        log.info("根据全限定类名:\t" + Class.forName("com.bigshen.learningDemo.javaSE.collections.map.hashmap.User"));
         // 常用的方法
         log.info("获取全限定类名:\t" + new User().getName());
         log.info("实例化:\t" + User.class.newInstance());
 
-        Class<?> c1 = Class.forName("com.bigshen.learningDemo.collection.map.hashmap.User");
+        Class<?> c1 = Class.forName("com.bigshen.learningDemo.javaSE.collections.map.hashmap.User");
         Constructor<?> conn = c1.getConstructor(String.class, int.class);
         User bigshen = (User)conn.newInstance("bigshen", 26);
         Field name = c1.getDeclaredField("name");
