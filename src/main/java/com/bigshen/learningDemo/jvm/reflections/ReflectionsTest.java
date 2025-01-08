@@ -1,4 +1,4 @@
-package com.bigshen.learningDemo.javaSE.reflections;
+package com.bigshen.learningDemo.jvm.reflections;
 
 import com.bigshen.learningDemo.javaSE.collections.map.hashmap.User;
 import lombok.extern.slf4j.Slf4j;

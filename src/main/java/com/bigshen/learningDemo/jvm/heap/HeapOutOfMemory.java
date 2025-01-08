@@ -1,9 +1,9 @@
-package com.bigshen.learningDemo.demo.jvm;
+package com.bigshen.learningDemo.jvm.heap;
 
 import java.util.ArrayList;
 
 /**
- * @Description:
+ * @Description: 堆内存溢出Demo
  * @Author: BIGSHEN
  * @Date: 2019/12/21 11:27
  */

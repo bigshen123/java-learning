@@ -1,4 +1,4 @@
-package com.bigshen.learningDemo.javaSE.reflections;
+package com.bigshen.learningDemo.jvm.reflections;
 
 import com.bigshen.learningDemo.common.annotation.Path;
 import org.junit.Test;
@@ -30,7 +30,7 @@ public class ReflectionsDemo {
     public void reflectionsDemo1() {
         Class<?> reflectionsDemo = null;
         try {
-            reflectionsDemo = Class.forName("com.bigshen.learningDemo.javaSE.reflections.ReflectionsDemo");
+            reflectionsDemo = Class.forName("com.bigshen.learningDemo.jvm.reflections.ReflectionsDemo");
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }

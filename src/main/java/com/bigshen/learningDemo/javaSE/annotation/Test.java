@@ -1,6 +1,6 @@
 package com.bigshen.learningDemo.javaSE.annotation;
 
-import com.bigshen.learningDemo.utils.ReflectionUtil;
+import com.bigshen.learningDemo.jvm.reflections.ReflectionUtil;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;

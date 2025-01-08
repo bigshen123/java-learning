@@ -1,4 +1,4 @@
-package com.bigshen.learningDemo.jvm;
+package com.bigshen.learningDemo.jvm.DirectMemory;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -8,7 +8,8 @@ import java.util.List;
 /**
  * @author byj
  * @date 2024/7/10
- * @Description 直接内存
+ * @Description 直接内存 OOM demo
+ *  报错：Exception in thread "main" java.lang.OutOfMemoryError: Direct buffer memory
  */
 public class DirectMemory {
 
@@ -26,6 +27,7 @@ public class DirectMemory {
     public static void main(String[] args) throws IOException, InterruptedException {
         System.in.read();
         while (true) {
+            // 直接内存不在堆上分配，而是通过操作系统的本地内存进行分配
             ByteBuffer directBuffer = ByteBuffer.allocateDirect(size);
             list.add(directBuffer);
             System.out.println(++count);

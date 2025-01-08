@@ -1,4 +1,4 @@
-package com.bigshen.learningDemo.javaSE.reflections;
+package com.bigshen.learningDemo.jvm.reflections;
 
 import java.lang.reflect.Method;
 

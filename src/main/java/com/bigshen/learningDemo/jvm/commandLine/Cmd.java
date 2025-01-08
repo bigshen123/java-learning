@@ -1,4 +1,4 @@
-package com.bigshen.learningDemo.demo.jvm.commandLine;
+package com.bigshen.learningDemo.jvm.commandLine;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;

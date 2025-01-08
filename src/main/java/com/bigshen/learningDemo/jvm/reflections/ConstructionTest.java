@@ -1,4 +1,4 @@
-package com.bigshen.learningDemo.javaSE.reflections;
+package com.bigshen.learningDemo.jvm.reflections;
 
 import lombok.Getter;
 
@@ -36,7 +36,7 @@ public class ConstructionTest implements Serializable {
         Class<?> clazz;
 
         //获取Class对象的引用
-        clazz = Class.forName("com.bigshen.learningDemo.javaSE.reflections.User");
+        clazz = Class.forName("com.bigshen.learningDemo.jvm.reflections.User");
 
         //第一种方法，实例化默认构造方法，User必须无参构造函数,否则将抛异常
         User user = (User) clazz.newInstance();

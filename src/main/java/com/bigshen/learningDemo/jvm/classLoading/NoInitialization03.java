@@ -1,4 +1,4 @@
-package com.bigshen.learningDemo.demo.jvm.classLoading;
+package com.bigshen.learningDemo.jvm.classLoading;
 
 /**
  * @ClassName NoInitialization03
