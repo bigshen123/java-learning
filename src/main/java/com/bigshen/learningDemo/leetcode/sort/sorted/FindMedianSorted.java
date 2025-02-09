@@ -1,11 +1,12 @@
-package com.bigshen.learningDemo.leetcode.sorted;
+package com.bigshen.learningDemo.leetcode.sort.sorted;
+
 
 /**
- * @Description:查询数组中位数并且时间复杂度O（log（m+n））
+ * @Description:
  * @Author: BIGSHEN
  * @Date: 2019/12/8 7:59
  */
-public class FindMedianSorted02 {
+public class FindMedianSorted {
     public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
         int m = nums1.length;
         int n = nums2.length;
@@ -38,7 +39,7 @@ public class FindMedianSorted02 {
     }
 
     public static void main(String[] args) {
-        int[] a={1,2,3,32,22,4};
+        int[] a={1,2,3};
         int[] b={6,7,8,9};
         double medianSortedArrays = findMedianSortedArrays(a, b);
         System.out.println(medianSortedArrays);
