@@ -1,4 +1,15 @@
 server:
   port: 28080
 
+spring:
+  redis:
+    host: localhost
+    port: 6379
+    password:
+    database: 0
+    timeout: 3000ms
+    lettuce:
+      pool:
+        enabled: false  # 关闭连接池
+
 
