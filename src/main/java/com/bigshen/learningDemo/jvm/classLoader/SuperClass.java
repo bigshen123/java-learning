@@ -1,4 +1,4 @@
-package com.bigshen.learningDemo.jvm.classLoading;
+package com.bigshen.learningDemo.jvm.classLoader;
 
 /**
  * @ClassName SuperClass

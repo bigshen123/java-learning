@@ -1,4 +1,4 @@
-package com.bigshen.learningDemo.jvm.classLoading;
+package com.bigshen.learningDemo.jvm.classLoader;
 
 /**
  * @ClassName SubClass
@@ -7,7 +7,7 @@ package com.bigshen.learningDemo.jvm.classLoading;
  * @Date 2020/6/26
  * @Version V1.0
  **/
-public class SubClass extends com.bigshen.learningDemo.jvm.classLoading.SuperClass {
+public class SubClass extends SuperClass {
     static {
         System.out.println("SubClass init!!!");
     }
