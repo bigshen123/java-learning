@@ -4,7 +4,7 @@ package com.bigshen.learningDemo.design.responsibility;
  * @ClassName ChainPatternDemo
  * @Description: TODO 职责链模式
  * 赋予它们不同的错误级别，并在每个记录器中设置下一个记录器
- *
+ * <p>
  * 每个记录器中的下一个记录器代表的是链的一部分
  * @Author BYJ
  * @Date 2020/6/27
@@ -12,7 +12,7 @@ package com.bigshen.learningDemo.design.responsibility;
  **/
 public class ChainPatternDemo {
 
-    private static AbstractLogger getChainOfLoggers(){
+    private static AbstractLogger getChainOfLoggers() {
 
         AbstractLogger errorLogger = new ErrorLogger(AbstractLogger.ERROR);
         AbstractLogger fileLogger = new FileLogger(AbstractLogger.DEBUG);
