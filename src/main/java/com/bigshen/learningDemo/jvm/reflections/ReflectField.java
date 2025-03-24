@@ -9,7 +9,7 @@ import java.lang.reflect.Field;
  */
 public class ReflectField {
     public static void main(String[] args) throws ClassNotFoundException, NoSuchFieldException {
-        Class<?> clazz = Class.forName("reflect.Student");
+        Class<?> clazz = Class.forName("com.bigshen.learningDemo.jvm.reflections.Student");
         //获取指定字段名称的Field类,注意字段修饰符必须为public而且存在该字段,
         // 否则抛NoSuchFieldException
         Field field = clazz.getField("age");
