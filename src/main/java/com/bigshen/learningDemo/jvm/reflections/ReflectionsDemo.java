@@ -1,11 +1,19 @@
 package com.bigshen.learningDemo.jvm.reflections;
 
+import com.bigshen.learningDemo.common.acpect.StringContains;
 import com.bigshen.learningDemo.common.annotation.Path;
+import com.bigshen.learningDemo.common.service.RedisService;
 import org.junit.Test;
 import org.reflections.Reflections;
+import org.reflections.scanners.FieldAnnotationsScanner;
+import org.reflections.scanners.SubTypesScanner;
+import org.reflections.util.ConfigurationBuilder;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 /**
  * @author byj
@@ -28,7 +36,7 @@ public class ReflectionsDemo {
 
     @Test
     public void reflectionsDemo1() {
-        Class<?> reflectionsDemo = null;
+        Class<?> reflectionsDemo;
         try {
             reflectionsDemo = Class.forName("com.bigshen.learningDemo.jvm.reflections.ReflectionsDemo");
         } catch (ClassNotFoundException e) {
@@ -45,42 +53,42 @@ public class ReflectionsDemo {
     @Test
     public void reflectionsDemo2() {
         //创建Reflections对象，并指定要扫描的包路径：
-        Reflections reflections = new Reflections("com.bigshen.learningDemo");
-        // 查找指定类：
-        Set<Class<? extends ArrayList>> subTypesOf = reflections.getSubTypesOf(ArrayList.class);
-        // 查找注解：
-        Set<Class<?>> annotatedClasses = reflections.getTypesAnnotatedWith(Path.class);
-
-        /*Reflections reflections = new Reflections(ReflectionsDemo.class.getPackage().getName());
-        Set<Class<? extends RedisService>> subTypesOf = reflections.getSubTypesOf(RedisService.class);
-        System.out.println(subTypesOf);
-        System.out.println(System.currentTimeMillis());*/
+        String basePackages = "com.bigshen.learningDemo";
+        Reflections reflections2 = new Reflections(basePackages);
+        Set<Class<? extends RedisService>> subTypesOf2 = reflections2.getSubTypesOf(RedisService.class);
+        System.out.println(subTypesOf2);
+        System.out.println(System.currentTimeMillis());
 
 
+        // 初始化工具类
+        Reflections reflections3 = new Reflections(new ConfigurationBuilder()
+                .forPackages(basePackages)
+                .addScanners(new SubTypesScanner())
+                .addScanners(new FieldAnnotationsScanner()));
 
-        /*// 初始化工具类
-        Reflections reflections = new Reflections(new ConfigurationBuilder().forPackages(basePackages).addScanners(new SubTypesScanner()).addScanners(new FieldAnnotationsScanner()));
+        // 获取某个包下类型注解对应的类
+        Set<Class<?>> typeClass = reflections3.getTypesAnnotatedWith(Path.class);
+        System.out.println(typeClass);
 
-// 获取某个包下类型注解对应的类
-        Set<Class<?>> typeClass = reflections.getTypesAnnotatedWith(RpcInterface.class, true);
+        // 获取子类
+        Set<Class<? extends ArrayList>> subTypes = reflections3.getSubTypesOf(ArrayList.class);
+        System.out.println(subTypes);
 
-// 获取子类
-        Set<Class<? extends SomeType>> subTypes = reflections.getSubTypesOf(SomeType.class);
+        // 获取注解对应的方法
+       // Set<Method> resources = reflections3.getMethodsAnnotatedWith(StringContains.class);
 
-// 获取注解对应的方法
-        Set<Method> resources =reflections.getMethodsAnnotatedWith(SomeAnnotation.class);
+        // 获取注解对应的字段
+        Set<Field> ids = reflections3.getFieldsAnnotatedWith(StringContains.class);
+        System.out.println(subTypesOf2);
 
-// 获取注解对应的字段
-        Set<Field> ids = reflections.getFieldsAnnotatedWith(javax.persistence.Id.class);
+        // 获取特定参数对应的方法
+       // Set<Method> someMethods = reflections3.getMethodsMatchParams(long.class, int.class);
 
-// 获取特定参数对应的方法
-        Set<Method> someMethods = reflections.getMethodsMatchParams(long.class, int.class);
+       // Set<Method> voidMethods = reflections3.getMethodsReturn(void.class);
 
-        Set<Method> voidMethods = reflections.getMethodsReturn(void.class);
-
-        Set<Method> pathParamMethods =reflections.getMethodsWithAnyParamAnnotated(PathParam.class);
-// 获取资源文件
-        Set<String> properties = reflections.getResources(Pattern.compile(".*\\.properties"));*/
+      //  Set<Method> pathParamMethods = reflections3.getMethodsWithAnyParamAnnotated(StringContains.class);
+        // 获取资源文件
+        Set<String> properties = reflections3.getResources(Pattern.compile(".*\\.properties"));
     }
 
 }

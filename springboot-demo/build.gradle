@@ -29,11 +29,14 @@ repositories {
 dependencies {
     // 项目基础依赖
     implementation("org.apache.httpcomponents:httpclient:4.5.13")
-    implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation("org.apache.commons:commons-lang3:3.9")
     annotationProcessor("org.projectlombok:lombok:1.18.6")
     compileOnly("org.projectlombok:lombok:1.18.6")
+    implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+    // spring data redis
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
     implementation('commons-io:commons-io:2.14.0')
     implementation('com.github.ben-manes.caffeine:caffeine:2.5.5')
     implementation ('com.google.guava:guava-testlib:30.1-jre')
@@ -42,9 +45,9 @@ dependencies {
     // easyexcel
     implementation ('com.alibaba:easyexcel:3.2.1')
 
-    // spring data redis
-    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+}
 
-
-
+// Gradle 默认只识别 JUnit 4 测试 使用了JUnit 5 需要明确配置 useJUnitPlatform()
+test {
+    useJUnitPlatform()
 }

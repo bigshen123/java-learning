@@ -24,9 +24,11 @@ public class Acceptor implements Runnable {
     @Override
     public void run() {
         try {
-            SocketChannel channel = serverSocket.accept();  // 获取客户端连接
+            // 获取客户端连接
+            SocketChannel channel = serverSocket.accept();
             if (null != channel) {
-                executor.execute(new Handler(channel));  // 将客户端连接交由线程池处理
+                // 将客户端连接交由线程池处理
+                executor.execute(new Handler(channel));
             }
         } catch (IOException e) {
             e.printStackTrace();
