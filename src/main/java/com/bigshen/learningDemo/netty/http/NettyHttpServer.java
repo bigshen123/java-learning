@@ -1,4 +1,4 @@
-package com.bigshen.learningDemo.netty.messagePush;
+package com.bigshen.learningDemo.netty.http;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;

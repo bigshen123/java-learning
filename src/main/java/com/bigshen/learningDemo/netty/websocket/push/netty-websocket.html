@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>websocket网页</title>
+</head>
+<body onload="connectServer();">
+<script type="text/javascript">
+    var websocket;
+    function connectServer() {
+        if ("WebSocket" in window) {
+            console.log("your browser supports websocket!");
+            websocket = new WebSocket("ws://localhost:8998/push");
+            websocket.onopen = function() {
+                console.log("established connection with push server.");
+            }
+            websocket.onmessage = function(ev) {
+                var response = ev.data;
+                console.log("receives push message from netty server: " + response);
+            }
+        }
+    }
+</script>
+</body>
+</html>
