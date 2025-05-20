@@ -45,6 +45,9 @@ dependencies {
     // easyexcel
     implementation ('com.alibaba:easyexcel:3.2.1')
 
+    // redisson
+    implementation 'org.redisson:redisson-spring-boot-starter:3.17.1'
+
 }
 
 // Gradle 默认只识别 JUnit 4 测试 使用了JUnit 5 需要明确配置 useJUnitPlatform()
