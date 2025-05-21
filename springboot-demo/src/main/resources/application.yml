@@ -8,8 +8,6 @@ spring:
     password:
     database: 0
     timeout: 3000ms
-    redisson:
-      file: classpath:redisson.yml
     lettuce:
       pool:
         enabled: false  # 关闭连接池
