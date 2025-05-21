@@ -13,5 +13,17 @@ spring:
         service-name: ${spring.application.name}
         health-check-path: /actuator/health
         health-check-interval: 15s
-
+      config:
+        # false 则关闭，配置更新的原理是使用Consul的Java SDK来进行长轮训Watch配置的变更，以保证配置能实时更新 ConfigWatch
+        enabled: true
+        watch:
+          # 长轮训等待时间，默认：55秒，需要小于60,如果需要修改后立刻能读取配置,则需要修改为1秒
+          # 实际用的是scheduleWithFixedDelay
+          wait-time: 55
+          # 是否开启自动刷新,默认值true 开启
+          enabled: true
+          # 定时任务的间隔时间,单位:毫秒,默认值1000
+          delay: 1000
+## 界面上创建config/springcloud-consul-demo/abc 字段，可以通过修改界面中的值实现配置动态修改
+abc: 123
 
