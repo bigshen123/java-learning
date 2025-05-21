@@ -1,0 +1,17 @@
+server:
+  port: 8899
+
+spring:
+  application:
+    name: springcloud-consul-demo
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        enabled: true
+        service-name: ${spring.application.name}
+        health-check-path: /actuator/health
+        health-check-interval: 15s
+
+

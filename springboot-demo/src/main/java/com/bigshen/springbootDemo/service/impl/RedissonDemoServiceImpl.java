@@ -254,7 +254,7 @@ public class RedissonDemoServiceImpl implements RedissonDemoService {
 
     @Override
     public void batchInsert(Map<String, Object> data) {
-        data.forEach((key, value) -> set(key, value));
+        data.forEach(this::set);
     }
 
     @Override

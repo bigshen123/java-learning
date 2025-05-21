@@ -1,0 +1,49 @@
+buildscript {
+    repositories {
+        maven {
+            url "https://maven.aliyun.com/repository/public/"
+        }
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.2.11.RELEASE")
+        classpath("io.spring.gradle:dependency-management-plugin:1.0.9.RELEASE")
+    }
+
+}
+ext {
+	set('springCloudVersion', "Hoxton.SR12")
+}
+
+apply plugin: "idea"
+apply plugin: "java"
+apply plugin: "war"
+apply plugin: "org.springframework.boot"
+apply plugin: "io.spring.dependency-management"
+
+repositories {
+    maven {
+        url "https://maven.aliyun.com/repository/public/"
+    }
+    mavenCentral()
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
+dependencies {
+    annotationProcessor("org.projectlombok:lombok:1.18.6")
+    compileOnly("org.projectlombok:lombok:1.18.6")
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.cloud:spring-cloud-starter-consul-discovery'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+// Gradle 默认只识别 JUnit 4 测试 使用了JUnit 5 需要明确配置 useJUnitPlatform()
+test {
+    useJUnitPlatform()
+}
