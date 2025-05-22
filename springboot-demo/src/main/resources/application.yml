@@ -5,11 +5,20 @@ spring:
   redis:
     host: localhost
     port: 6379
-    password:
+    password: ENC(xvbQ57E/87qvbbmNI8A1OKZGVIISBy/X0yWTYb3YVfSt0FtRGZ+pp+XpfdMra6dP)
     database: 0
     timeout: 3000ms
     lettuce:
       pool:
         enabled: false  # 关闭连接池
+
+jasypt:
+  encryptor:
+    # 使用自定义加密器
+    bean: codeSheepEncryptorBean
+    # 安全考虑，加密密钥不要写在配置中 java -jar xx.jar --jasypt.encryptor.password=CodeSheep
+    # java -Djasypt.encryptor.password=CodeSheep -jar xx.jar
+    password: CodeSheep
+
 
 

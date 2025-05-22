@@ -41,6 +41,7 @@ dependencies {
     implementation('com.github.ben-manes.caffeine:caffeine:2.5.5')
     implementation ('com.google.guava:guava-testlib:30.1-jre')
     implementation ('com.alibaba:fastjson:1.2.83')
+    implementation ('com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.5')
 
     // easyexcel
     implementation ('com.alibaba:easyexcel:3.2.1')
