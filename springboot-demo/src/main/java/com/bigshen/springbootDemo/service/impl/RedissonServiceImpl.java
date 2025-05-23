@@ -1,6 +1,6 @@
 package com.bigshen.springbootDemo.service.impl;
 
-import com.bigshen.springbootDemo.service.RedissonDemoService;
+import com.bigshen.springbootDemo.service.RedissonService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.redisson.api.*;
 import org.redisson.api.geo.GeoSearchArgs;
@@ -20,12 +20,12 @@ import java.util.function.Consumer;
  */
 
 @Service
-public class RedissonDemoServiceImpl implements RedissonDemoService {
+public class RedissonServiceImpl implements RedissonService {
 
     private final RedissonClient redissonClient;
     private final ObjectMapper objectMapper;
 
-    public RedissonDemoServiceImpl(RedissonClient redissonClient) {
+    public RedissonServiceImpl(RedissonClient redissonClient) {
         this.redissonClient = redissonClient;
         this.objectMapper = new ObjectMapper();
     }

@@ -1,4 +1,4 @@
-package com.bigshen.learningDemo.mq.kafka;
+package com.bigshen.springbootDemo.mq.kafka;
 
 import org.apache.kafka.clients.producer.Callback;
 import org.apache.kafka.clients.producer.KafkaProducer;
@@ -9,7 +9,6 @@ import org.apache.kafka.common.serialization.IntegerSerializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 
 import java.util.Properties;
-import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
 
 public class Producer {

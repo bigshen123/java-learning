@@ -17,7 +17,7 @@ import java.util.function.Consumer;
  * @date 2025/5/20
  * @Description
  */
-public interface RedissonDemoService {
+public interface RedissonService {
 
     // ======================== 基本KV操作 ========================
 

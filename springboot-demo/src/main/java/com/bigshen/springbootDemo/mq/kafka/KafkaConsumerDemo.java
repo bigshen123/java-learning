@@ -1,4 +1,4 @@
-package com.bigshen.learningDemo.mq.kafka;
+package com.bigshen.springbootDemo.mq.kafka;
 
 /**
  * kafka消费者样例

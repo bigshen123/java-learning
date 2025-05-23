@@ -1,4 +1,4 @@
-package com.bigshen.learningDemo.mq.rocketmq;
+package com.bigshen.springbootDemo.mq.rocketmq.demo;
 
 import org.apache.rocketmq.client.apis.ClientConfiguration;
 import org.apache.rocketmq.client.apis.ClientConfigurationBuilder;
@@ -14,6 +14,7 @@ import org.apache.rocketmq.client.apis.producer.SendReceipt;
  */
 public class ProducerExample {
     public static void main(String[] args) throws ClientException {
+
         String endpoint = "localhost:8081";
         String topic = "Your Topic";
         ClientServiceProvider provider = ClientServiceProvider.loadService();

@@ -1,7 +1,7 @@
 package com.bigshen.springbootDemo.util;
 
-import com.bigshen.springbootDemo.service.RedissonDemoService;
-import com.bigshen.springbootDemo.service.impl.RedissonDemoServiceImpl;
+import com.bigshen.springbootDemo.service.RedissonService;
+import com.bigshen.springbootDemo.service.impl.RedissonServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
@@ -18,7 +18,7 @@ import java.util.Map;
 public class RedissonDemo {
 
     // 模拟注入 RedissonDemoService（你实际应从 Spring 或构造方法获取）
-    private static RedissonDemoService redissonService = null;
+    private static RedissonService redissonService = null;
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
     public static void main(String[] args) {
@@ -28,7 +28,7 @@ public class RedissonDemo {
         // 2. 创建 RedissonClient
         RedissonClient redissonClient = Redisson.create(config);
         try {
-            redissonService = new RedissonDemoServiceImpl(redissonClient);
+            redissonService = new RedissonServiceImpl(redissonClient);
             System.out.println("Redis ping: " + redissonClient.getKeys().count());
 
             testBasicKV();

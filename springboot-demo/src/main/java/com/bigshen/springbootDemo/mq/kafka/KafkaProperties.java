@@ -1,4 +1,4 @@
-package com.bigshen.learningDemo.mq.kafka;
+package com.bigshen.springbootDemo.mq.kafka;
 
 public class KafkaProperties {
     public static final String TOPIC = "bigshen-topic";

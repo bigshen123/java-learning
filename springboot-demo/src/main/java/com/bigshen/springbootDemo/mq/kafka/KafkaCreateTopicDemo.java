@@ -1,4 +1,4 @@
-package com.bigshen.learningDemo.mq.kafka;
+package com.bigshen.springbootDemo.mq.kafka;
 /**
  * 创建3个分区的kafka的topic
  */

@@ -1,4 +1,4 @@
-package com.bigshen.learningDemo.mq.kafka;
+package com.bigshen.springbootDemo.mq.kafka;
 
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.NewTopic;

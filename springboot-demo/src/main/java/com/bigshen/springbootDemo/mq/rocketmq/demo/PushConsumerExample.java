@@ -1,4 +1,4 @@
-package com.bigshen.learningDemo.mq.rocketmq;
+package com.bigshen.springbootDemo.mq.rocketmq.demo;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.apis.ClientConfiguration;

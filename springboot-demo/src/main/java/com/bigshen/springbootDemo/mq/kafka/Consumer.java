@@ -1,6 +1,5 @@
-package com.bigshen.learningDemo.mq.kafka;
+package com.bigshen.springbootDemo.mq.kafka;
 
-import com.alibaba.fastjson.JSONObject;
 import org.apache.kafka.clients.consumer.*;
 import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.common.errors.WakeupException;
@@ -8,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.*;
-import java.util.concurrent.CountDownLatch;
 
 public class Consumer extends Thread{
     private static final Logger log = LoggerFactory.getLogger(Consumer.class);
