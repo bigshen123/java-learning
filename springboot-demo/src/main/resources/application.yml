@@ -10,7 +10,10 @@ spring:
     timeout: 3000ms
     lettuce:
       pool:
-        enabled: false  # 关闭连接池
+        max-active: 8
+        max-wait: -1ms
+        max-idle: 8
+        min-idle: 0
 
 jasypt:
   encryptor:
