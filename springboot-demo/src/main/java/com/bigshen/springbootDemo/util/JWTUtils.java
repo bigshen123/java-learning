@@ -1,9 +1,5 @@
-package com.bigshen.learningDemo.javaSE.authencator.jwt;
+package com.bigshen.springbootDemo.util;
 
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.algorithms.Algorithm;
-import com.auth0.jwt.interfaces.Claim;
-import com.auth0.jwt.interfaces.DecodedJWT;
 import io.jsonwebtoken.Jwt;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -13,7 +9,6 @@ import java.security.*;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,77 +18,6 @@ import java.util.Map;
  * @Description
  */
 public class JWTUtils {
-    public static String SIGN = "ASDFse@#w";
-
-    /**
-     * 生成Token
-     *
-     * @param userId
-     * @param userName
-     * @return
-     */
-    public static String createToken(String userId, String userName) {
-        Map<String, Object> tokenHeaderMap = new HashMap<>();
-        Calendar cr = Calendar.getInstance();
-        cr.add(Calendar.SECOND, 100);
-        String token = JWT.create().withHeader(tokenHeaderMap)
-                .withClaim("userId", userId)
-                .withClaim("userName", userName)
-                .withExpiresAt(cr.getTime())
-                // 加签（配置私钥，防止字符串被篡改） HMAC with SHA-256
-                .sign(Algorithm.HMAC256(SIGN));
-        System.out.println("生成的token：" + token);
-        return token;
-    }
-
-    /**
-     * token 验签
-     * token 有效负荷读取
-     *
-     * @param token
-     */
-    public static DecodedJWT verifyToken(String token) {
-        return JWT.require(Algorithm.HMAC256(SIGN)).build().verify(token);//创建验证对象
-    }
-
-    public static void main(String[] args) {
-        String token = createToken("123", "admin");
-        DecodedJWT decodedJWT = verifyToken(token);
-        Map<String, Claim> claims = decodedJWT.getClaims();
-        System.out.println("claims: " + claims);
-        /**
-         * Header 中包含的信息：
-         * {"alg": "HS256","typ": "JWT"}
-         */
-        System.out.println("header: " + decodedJWT.getHeader());
-        /**
-         * Payload 中包含的信息：
-         * iss：发行人
-         * exp：到期时间
-         * sub：主题
-         * aud：用户
-         * nbf：在此之前不可用
-         * iat：发布时间
-         * jti：JWT ID用于标识该JWT
-         */
-        System.out.println("Payload: " + decodedJWT.getPayload());
-        /**
-         * 签名实际上是一个加密的过程，是对上面两部分数据通过指定的算法生成哈希，以确保数据不会被篡改。
-         */
-        System.out.println("Signature: " + decodedJWT.getSignature());
-
-
-        Map<String, Object> playload = new HashMap<>();
-        playload.put("userId", "100");
-        playload.put("tes", "test");
-        //使用HS256加密算法
-        String str = createJWTStrHS256(playload, "123456");
-        System.out.println("HS256Token:" + str);
-        Object o = decodeJWTrHS256(str, "123456");
-        System.out.println(o);
-    }
-
-
     /**
      * 根据有效荷载创建JWT验证字符串
      * 使用的签名算法为HS256,对称算法，生成JWT字符串与解析JWT
@@ -102,7 +26,7 @@ public class JWTUtils {
      * @param key      签名的key,
      * @return
      */
-    public static String createJWTStrHS256(Map<String, Object> playload, String key) {
+    public String createJWTStrHS256(Map<String, Object> playload, String key) {
         //头部JSON数据，固定写法
         Map<String, Object> headerMap = new HashMap<>();
         //算法HS256
@@ -128,7 +52,7 @@ public class JWTUtils {
      * @param key    自定义key，与创建JWT使用的key一致
      * @return
      */
-    public static Object decodeJWTrHS256(String JwtStr, String key) {
+    public Object decodeJWTrHS256(String JwtStr, String key) {
         //头部JSON数据，固定写法
         Map<String, Object> headerMap = new HashMap<>();
         //算法HS256

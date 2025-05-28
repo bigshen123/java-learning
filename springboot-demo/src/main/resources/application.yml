@@ -10,10 +10,20 @@ spring:
     timeout: 3000ms
     lettuce:
       pool:
+        # 连接池最大连接数（使用负值表示没有限制）默认 8。根据 CPU 核心数调整，通常为 CPU * 2 + 2
         max-active: 8
+        # 连接池最大阻塞等待时间（使用负值表示没有限制） 默认 -1。5000~60000（避免线程长时间阻塞）
         max-wait: -1ms
+        # 连接池中的最大空闲连接 默认 8。CPU * 2
         max-idle: 8
+        # 连接池中的最大空闲连接 默认 8。0 或 1（低负载场景）
         min-idle: 0
+        # 每 timeBetweenEvictionRunsMillis 毫秒秒清理连接池中空闲的连接 (默认-1,不开启) 1000~60000（根据负载调整）
+        timeBetweenEvictionRuns: 30000
+        # 在borrow一个redis实例时，是否提前进行vaidate操作；如果为true，则得到的redis实例均是可用的 (默认false)
+        testOnBorrow: true
+        # 如果为true，表示有一个idle object evitor线程对idle object进行扫描，如果validate失败，此object会被从pool中drop掉(默认false)
+        testWhileIdle: true
 
 jasypt:
   encryptor:
@@ -47,4 +57,6 @@ rocketmq:
     # 是否在内部发送失败时重试另一个broker，默认false
     retryNextServer: false
 
+jwt:
+  enabled: true
 
