@@ -1,5 +1,7 @@
 server:
   port: 28080
+  additional-port: 28081
+  additional-address: 0.0.0.0
 
 spring:
   redis:
