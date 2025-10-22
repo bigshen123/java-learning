@@ -7,13 +7,11 @@ import java.io.File;
 import java.util.List;
 
 public class ExcelErrorWriter {
-
     public static File writeErrorFile(List<ImportRowDTO> rows, String outPath) {
-        File outFile = new File(outPath);
-        outFile.getParentFile().mkdirs();
-        EasyExcel.write(outFile, ImportRowDTO.class)
-                .sheet("errors")
+        File file = new File(outPath);
+        EasyExcel.write(file, ImportRowDTO.class)
+                .sheet("错误数据")
                 .doWrite(rows);
-        return outFile;
+        return file;
     }
 }

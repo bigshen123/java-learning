@@ -35,15 +35,9 @@ public class ValidationService {
         Map<String, List<ImportRule>> rulesByField = rules.stream()
                 .collect(Collectors.groupingBy(ImportRule::getFieldName));
 
-        List<CompletableFuture<ImportRowDTO>> futures = new ArrayList<>();
-        for (ImportRowDTO row : rows) {
-            CompletableFuture<ImportRowDTO> f = CompletableFuture.supplyAsync(() -> validateRow(row, rulesByField), executor);
-            futures.add(f);
-        }
-        List<ImportRowDTO> results = futures.stream()
-                .map(CompletableFuture::join)
-                .collect(Collectors.toList());
-        return results.stream().filter(r -> r.getErrorInfo() != null && !r.getErrorInfo().isEmpty())
+        // 保留顺序
+        return rows.stream()
+                .map(row -> validateRow(row, rulesByField))
                 .collect(Collectors.toList());
     }
 

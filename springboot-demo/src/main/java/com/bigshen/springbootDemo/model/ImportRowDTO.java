@@ -5,21 +5,24 @@ import lombok.Data;
 
 @Data
 public class ImportRowDTO {
-    @ExcelProperty("id")
     private String id;
 
-    @ExcelProperty("name")
+    @ExcelProperty(value = "姓名", index = 0)
     private String name;
 
-    @ExcelProperty("age")
+    @ExcelProperty(value = "年龄", index = 1)
     private String age;
 
-    @ExcelProperty("phone")
-    private String phone;
-
-    @ExcelProperty("email")
+    @ExcelProperty(value = "邮箱", index = 2)
     private String email;
 
+    @ExcelProperty(value = "手机号", index = 3)
+    private String phone;
+
+    @ExcelProperty(value = "入职日期", index = 4)
+    private String date;
+
     // error column for write-back
+    @ExcelProperty(value = "错误信息", index = 5)
     private String errorInfo;
 }

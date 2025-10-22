@@ -8,6 +8,8 @@ import com.bigshen.springbootDemo.service.ValidationService;
 import com.bigshen.springbootDemo.util.ExcelErrorWriter;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -20,13 +22,17 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.InputStream;
 import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/import")
+@Slf4j
 public class ImportController {
+
 
     private final ValidationService validationService;
     private final ImportService importService;
@@ -42,12 +48,14 @@ public class ImportController {
 
         List<ImportRowDTO> errors = allRows.stream()
                 .filter(r -> r.getErrorInfo() != null && !r.getErrorInfo().isEmpty()).collect(Collectors.toList());
+        log.info("共读取 {} 条记录，其中 {} 条有错误:{}", allRows.size(), errors.size(), errors);
+
 
         if (!errors.isEmpty()) {
             String outPath = System.getProperty("java.io.tmpdir") + "/import_errors_" + System.currentTimeMillis() + ".xlsx";
-            File outFile = ExcelErrorWriter.writeErrorFile(allRows, outPath);
+            ExcelErrorWriter.writeErrorFile(allRows, outPath);
 
-            byte[] bytes = Files.readAllBytes(outFile.toPath());
+            byte[] bytes = Files.readAllBytes(Paths.get(outPath));
             return ResponseEntity.ok()
                     .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=import_errors.xlsx")
                     .contentType(MediaType.APPLICATION_OCTET_STREAM)

@@ -9,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -35,10 +37,14 @@ public class ExcelRowListener extends AnalysisEventListener<ImportRowDTO> {
     }
 
     private void flushBuffer() {
-        validationService.validateAll(new ArrayList<>(buffer));
-        allRows.addAll(buffer);
+        // 验证结果与输入保持一一对应，包含无错误的行
+        List<ImportRowDTO> validated = validationService.validateAll(new ArrayList<>(buffer));
+
+        // 直接追加验证后的行，避免索引错位导致错误写回
+        allRows.addAll(validated);
         buffer.clear();
     }
+
 
     public List<ImportRowDTO> getAllRows() {
         return allRows;
