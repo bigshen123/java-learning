@@ -1,8 +1,6 @@
 package com.bigshen.springbootDemo.model;
 
 import lombok.Data;
-import org.springframework.data.annotation.Id;
-
 import javax.persistence.*;
 
 @Entity

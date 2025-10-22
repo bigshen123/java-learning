@@ -5,10 +5,11 @@ server:
 
 spring:
   redis:
-    host: localhost
-    port: 6379
-    password: ENC(xvbQ57E/87qvbbmNI8A1OKZGVIISBy/X0yWTYb3YVfSt0FtRGZ+pp+XpfdMra6dP)
-    database: 0
+    # 改为自己的地址
+    host: 10.153.17.11
+    port: 33065
+    password: Hl#vbKj5I7t
+    database: 8
     timeout: 3000ms
     lettuce:
       pool:
@@ -26,6 +27,16 @@ spring:
         testOnBorrow: true
         # 如果为true，表示有一个idle object evitor线程对idle object进行扫描，如果validate失败，此object会被从pool中drop掉(默认false)
         testWhileIdle: true
+  datasource:
+    # 替换为自己的数据库连接信息
+    url: jdbc:mysql://10.30.5.103:13306/career_planning_dev?useSSL=false&serverTimezone=UTC&characterEncoding=utf8
+    username: career_planning
+    password: career_planning
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
 
 jasypt:
   encryptor:
