@@ -62,6 +62,9 @@ dependencies {
     // embed jetty
     implementation("org.springframework.boot:spring-boot-starter-jetty")
 
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    runtimeOnly 'mysql:mysql-connector-java:8.0.33'
+
 }
 
 // Gradle 默认只识别 JUnit 4 测试 使用了JUnit 5 需要明确配置 useJUnitPlatform()
