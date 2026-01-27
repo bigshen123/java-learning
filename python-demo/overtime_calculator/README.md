@@ -30,7 +30,7 @@ pip install -r requirements.txt
 ### 2. 运行应用
 
 ```bash
-streamlit run app.py
+echo "" | python3 -m streamlit run app.py
 ```
 
 应用将自动在浏览器中打开，默认地址：http://localhost:8501
